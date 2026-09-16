@@ -6,7 +6,9 @@
 
 Expo Router (file-based routing) app, in early scaffolding stage — currently
 a single "Hello World" screen. Will grow into an e-commerce app (catalog,
-cart, checkout, orders). TypeScript throughout.
+cart, checkout, orders). TypeScript throughout. Backend is Supabase (Auth,
+Postgres, Storage, Edge Functions); shared client lives at
+`src/infrastructure/supabase/client.ts`.
 
 ## Commands
 
@@ -60,6 +62,7 @@ Add a feature's folders when you actually build that feature.
 - kebab-case filenames, PascalCase component names, camelCase functions/vars.
 - Always use the `@/*` alias — never relative `../../../` imports.
 - ESLint config: eslint-config-expo (flat config) + Prettier via eslint-plugin-prettier; no-restricted-imports blocks relative parent (../) imports to enforce the @/* rule above.
+- UI/theme follows Material Design naming for color tokens: a surface color (e.g. `primary`, `background`, `surface`) pairs with an `on<Surface>` token (e.g. `onPrimary`) for content placed on top of it. Keep new color tokens consistent with this pattern.
 
 ## Testing
 
