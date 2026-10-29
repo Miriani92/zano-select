@@ -8,9 +8,8 @@ import {
   type ViewStyle,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useTranslation } from '@/shared/i18n';
 import { radius, spacing, useColors } from '@/shared/theme';
-
 import { IconButton } from './icon-button';
 import { ThemedText } from './text';
 
@@ -21,7 +20,7 @@ type DerivedInputBehavior = Pick<
   'keyboardType' | 'autoCapitalize' | 'autoComplete' | 'secureTextEntry'
 >;
 
-function behaviorFor(
+function getBehavior(
   type: InputType,
   isPasswordVisible: boolean,
 ): DerivedInputBehavior {
@@ -77,8 +76,9 @@ export function Input({
   ...textInputProps
 }: InputProps) {
   const colors = useColors();
+  const { t } = useTranslation();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const behavior = behaviorFor(type, isPasswordVisible);
+  const behavior = getBehavior(type, isPasswordVisible);
 
   const accessory =
     rightAccessory ??
@@ -86,7 +86,7 @@ export function Input({
       <IconButton
         size="sm"
         accessibilityLabel={
-          isPasswordVisible ? 'Hide password' : 'Show password'
+          isPasswordVisible ? t('input.hidePassword') : t('input.showPassword')
         }
         onPress={() => setIsPasswordVisible((visible) => !visible)}
       >
