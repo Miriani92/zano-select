@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react';
 import {
   ActivityIndicator,
   Pressable,
+  View,
   type GestureResponderEvent,
   type StyleProp,
   type ViewStyle,
@@ -10,7 +12,7 @@ import { radius, spacing, useColors } from '@/shared/theme';
 
 import { ThemedText } from './text';
 
-export type ButtonVariant = 'primary' | 'secondary';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 const sizeStyles: Record<
@@ -36,6 +38,8 @@ const sizeStyles: Record<
 
 export interface ButtonProps {
   title: string;
+  /** Shown before the title, e.g. an Ionicons element. */
+  icon?: ReactNode;
   onPress: (event: GestureResponderEvent) => void;
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -47,6 +51,7 @@ export interface ButtonProps {
 
 export function Button({
   title,
+  icon,
   onPress,
   variant = 'primary',
   size = 'md',
@@ -62,7 +67,9 @@ export function Button({
     ? colors.disabled
     : variant === 'primary'
       ? colors.primary
-      : colors.surface;
+      : variant === 'outline'
+        ? colors.background
+        : colors.surface;
 
   const textColor = isInactive
     ? colors.textSecondary
@@ -81,6 +88,8 @@ export function Button({
         {
           backgroundColor,
           borderRadius: radius.md,
+          borderWidth: variant === 'outline' ? 1 : 0,
+          borderColor: colors.border,
           alignItems: 'center',
           justifyContent: 'center',
           opacity: pressed && !isInactive ? 0.8 : 1,
@@ -92,9 +101,18 @@ export function Button({
       {loading ? (
         <ActivityIndicator color={textColor} />
       ) : (
-        <ThemedText variant="headline" style={{ color: textColor }}>
-          {title}
-        </ThemedText>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: spacing.sm,
+          }}
+        >
+          {icon}
+          <ThemedText variant="headline" style={{ color: textColor }}>
+            {title}
+          </ThemedText>
+        </View>
       )}
     </Pressable>
   );

@@ -15,28 +15,28 @@ export type ColorTokens = {
 
 const light: ColorTokens = {
   background: '#FFFFFF',
-  surface: '#F5F6F8',
-  text: '#14171A',
-  textSecondary: '#6B7280',
-  border: '#E2E4E8',
-  primary: '#208AEF',
+  surface: '#F4F5F2',
+  text: '#16181A',
+  textSecondary: '#5B6168',
+  border: '#C9CDD1',
+  primary: '#0F6B4F',
   onPrimary: '#FFFFFF',
-  disabled: '#C7CBD1',
-  placeholder: '#9AA0A6',
-  error: '#DC2626',
+  disabled: '#D5D8DB',
+  placeholder: '#7A8087',
+  error: '#A3321C',
 };
 
 const dark: ColorTokens = {
   background: '#0B0D10',
-  surface: '#1B1E23',
+  surface: '#1A1D1B',
   text: '#F2F3F5',
-  textSecondary: '#9AA0A6',
-  border: '#2C2F36',
-  primary: '#4FA8FF',
-  onPrimary: '#0B1F33',
+  textSecondary: '#A3A9AF',
+  border: '#3A3F44',
+  primary: '#4CC79A',
+  onPrimary: '#04261A',
   disabled: '#3A3D42',
   placeholder: '#7A808A',
-  error: '#F87171',
+  error: '#F2876F',
 };
 
 export function useColors(): ColorTokens {
