@@ -1,9 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { ThemedText } from '@/shared/ui';
+import { useTranslation } from '@/shared/i18n';
 
-export default function Index() {
+export default function App() {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
+      <ThemedText>{t('auth.welcome.title')}</ThemedText>
     </View>
   );
 }

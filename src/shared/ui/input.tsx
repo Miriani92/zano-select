@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from '@/shared/i18n';
-import { radius, spacing, useColors } from '@/shared/theme';
+import { fonts, radius, spacing, useColors } from '@/shared/theme';
 import { IconButton } from './icon-button';
 import { ThemedText } from './text';
 
@@ -127,6 +127,7 @@ export function Input({
               flex: 1,
               paddingVertical: spacing.sm,
               fontSize: 16,
+              fontFamily: fonts.regular,
               color: colors.text,
             },
             style,
