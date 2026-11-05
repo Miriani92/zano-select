@@ -34,7 +34,7 @@ export default function RootLayout() {
       <Stack.Protected guard={user !== null}>
         <Stack.Screen name="(app)" />
       </Stack.Protected>
-      <Stack.Protected guard={!!user}>
+      <Stack.Protected guard={!user}>
         <Stack.Screen name="(auth)" />
       </Stack.Protected>
     </Stack>

@@ -17,7 +17,7 @@ const noop = () => {};
 
 export function WelcomeScreen({
   onContinueWithEmail,
-  onContinueWithApple,
+  // onContinueWithApple,
   onContinueWithGoogle,
 }: WelcomeScreenProps) {
   const colors = useColors();
@@ -68,14 +68,14 @@ export function WelcomeScreen({
       </View>
 
       <View style={{ marginTop: 'auto', gap: spacing.sm }}>
-        <Button
-          size="lg"
-          variant="outline"
-          title={t('auth.welcome.continueWithApple')}
-          icon={<Ionicons name="logo-apple" size={20} color={colors.text} />}
-          onPress={onContinueWithApple ?? noop}
-          disabled={!onContinueWithApple}
-        />
+        {/* <Button */}
+        {/*   size="lg" */}
+        {/*   variant="outline" */}
+        {/*   title={t('auth.welcome.continueWithApple')} */}
+        {/*   icon={<Ionicons name="logo-apple" size={20} color={colors.text} />} */}
+        {/*   onPress={onContinueWithApple ?? noop} */}
+        {/*   disabled={!onContinueWithApple} */}
+        {/* /> */}
         <Button
           size="lg"
           variant="outline"
