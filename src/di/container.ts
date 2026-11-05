@@ -8,7 +8,7 @@ import { supabase } from '@/infrastructure/supabase/client';
 // Composition root: the only place that knows which implementation backs each repository.
 const authRepository = createSupabaseAuthRepository(supabase);
 
-export const container = {
+export const authUseCases = {
   auth: {
     sendEmailCode: makeSendEmailCode(authRepository),
     verifyEmailCode: makeVerifyEmailCode(authRepository),
