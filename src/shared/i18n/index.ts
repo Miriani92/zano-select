@@ -36,7 +36,8 @@ export async function restoreLanguage(): Promise<void> {
   try {
     const saved = await AsyncStorage.getItem(STORAGE_KEY);
     if (isLanguage(saved) && saved !== i18n.language) {
-      await i18n.changeLanguage(saved);
+      // TODO:remove hardcoded pass saved
+      await i18n.changeLanguage('ka');
     }
   } catch {
     console.error('restore language operation failed');
