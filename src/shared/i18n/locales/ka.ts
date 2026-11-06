@@ -1,7 +1,7 @@
 // Georgian is the main language and the source of truth for translation keys.
 export const ka = {
   common: {
-    appName: 'Zano Select',
+    appName: 'Zano Outlet',
     back: 'უკან',
     genericError: 'რაღაც შეცდომა მოხდა. სცადეთ თავიდან.',
   },
@@ -11,7 +11,7 @@ export const ka = {
   },
   auth: {
     welcome: {
-      title: 'კეთილი იყოს თქვენი მობრძანება Zano Select-ში',
+      title: 'კეთილი იყოს თქვენი მობრძანება Zano Outlet-ში',
       subtitle:
         'შედით ან შექმენით ანგარიში ერთი ნაბიჯით. პაროლი საჭირო არ არის.',
       continueWithApple: 'გაგრძელება Apple-ით',

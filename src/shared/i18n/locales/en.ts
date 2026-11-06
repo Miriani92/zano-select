@@ -2,7 +2,7 @@ import type { Translation } from './ka';
 
 export const en: Translation = {
   common: {
-    appName: 'Zano Select',
+    appName: 'Zano Outlet',
     back: 'Back',
     genericError: 'Something went wrong. Please try again.',
   },
@@ -12,7 +12,7 @@ export const en: Translation = {
   },
   auth: {
     welcome: {
-      title: 'Welcome to Zano Select',
+      title: 'Welcome to Zano Outlet',
       subtitle: 'Sign in or create an account in one step. No password needed.',
       continueWithApple: 'Continue with Apple',
       continueWithGoogle: 'Continue with Google',

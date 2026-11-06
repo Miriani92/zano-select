@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "zano-select",
-    "slug": "zano-select",
+    "name": "Zano Outlet",
+    "slug": "zano-outlet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "zanoselect",
+    "scheme": "zanooutlet",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
