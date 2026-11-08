@@ -34,10 +34,29 @@ function toAuthError(error: unknown): AuthError {
   return new AuthError(codeFor(error), message);
 }
 
+export interface GoogleAuthProvider {
+  /** Returns a Google ID token, or null if the user cancels. */
+  getIdToken(): Promise<string | null>;
+  signOut(): Promise<void>;
+}
+
 export function createSupabaseAuthRepository(
   client: SupabaseClient,
+  google: GoogleAuthProvider,
 ): AuthRepository {
   return {
+    async signInWithGoogle() {
+      const idToken = await google.getIdToken();
+      if (!idToken) return null;
+      const { data, error } = await client.auth.signInWithIdToken({
+        provider: 'google',
+        token: idToken,
+      });
+      if (error) throw toAuthError(error);
+      if (!data.user) throw new AuthError('unknown', 'No user after Google');
+      return toUser(data.user);
+    },
+
     async sendEmailCode(email) {
       const { error } = await client.auth.signInWithOtp({
         email,
@@ -60,6 +79,7 @@ export function createSupabaseAuthRepository(
     async signOut() {
       const { error } = await client.auth.signOut();
       if (error) throw toAuthError(error);
+      await google.signOut();
     },
 
     async getCurrentUser() {

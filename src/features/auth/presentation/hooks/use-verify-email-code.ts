@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { container } from '@/di/container';
+import { authUseCases } from '@/di/container';
 import type { AuthErrorCode } from '@/features/auth/domain/entities/auth-error';
 import { toAuthErrorCode } from '@/features/auth/presentation/hooks/auth-error-code';
 
@@ -13,7 +13,7 @@ export function useVerifyEmailCode() {
     setIsVerifying(true);
     setError(null);
     try {
-      await container.auth.verifyEmailCode(email, code);
+      await authUseCases.auth.verifyEmailCode(email, code);
       return true;
     } catch (e) {
       setError(toAuthErrorCode(e));

@@ -1,5 +1,10 @@
 export type AuthErrorCode =
-  'invalidEmail' | 'invalidCode' | 'rateLimited' | 'network' | 'unknown';
+  | 'invalidEmail'
+  | 'invalidCode'
+  | 'rateLimited'
+  | 'network'
+  | 'googleUnavailable'
+  | 'unknown';
 
 export class AuthError extends Error {
   readonly code: AuthErrorCode;

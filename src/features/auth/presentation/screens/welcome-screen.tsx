@@ -2,26 +2,21 @@ import { Ionicons } from '@expo/vector-icons';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useSignInWithGoogle } from '@/features/auth/presentation/hooks/use-sign-in-with-google';
 import { Trans, useTranslation } from '@/shared/i18n';
 import { fonts, radius, spacing, useColors } from '@/shared/theme';
 import { Button, ThemedText } from '@/shared/ui';
 
 export interface WelcomeScreenProps {
   onContinueWithEmail: () => void;
-  /** Apple and Google sign-in come later; their buttons stay disabled until a handler is passed. */
+  /** Apple sign-in comes later. */
   onContinueWithApple?: () => void;
-  onContinueWithGoogle?: () => void;
 }
 
-const noop = () => {};
-
-export function WelcomeScreen({
-  onContinueWithEmail,
-  // onContinueWithApple,
-  onContinueWithGoogle,
-}: WelcomeScreenProps) {
+export function WelcomeScreen({ onContinueWithEmail }: WelcomeScreenProps) {
   const colors = useColors();
   const { t } = useTranslation();
+  const google = useSignInWithGoogle();
 
   return (
     <SafeAreaView
@@ -81,8 +76,8 @@ export function WelcomeScreen({
           variant="outline"
           title={t('auth.welcome.continueWithGoogle')}
           icon={<Ionicons name="logo-google" size={20} color={colors.text} />}
-          onPress={onContinueWithGoogle ?? noop}
-          disabled={!onContinueWithGoogle}
+          onPress={google.signIn}
+          loading={google.isSigningIn}
         />
         <Button
           size="lg"
@@ -91,7 +86,18 @@ export function WelcomeScreen({
             <Ionicons name="mail-outline" size={20} color={colors.onPrimary} />
           }
           onPress={onContinueWithEmail}
+          disabled={google.isSigningIn}
         />
+        {google.error && (
+          <ThemedText
+            variant="caption"
+            color="error"
+            accessibilityRole="alert"
+            style={{ textAlign: 'center' }}
+          >
+            {t(`auth.errors.${google.error}`)}
+          </ThemedText>
+        )}
         <ThemedText
           variant="caption"
           style={{ textAlign: 'center', marginTop: spacing.sm }}

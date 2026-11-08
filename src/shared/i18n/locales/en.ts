@@ -42,6 +42,7 @@ export const en: Translation = {
       invalidCode: 'The code is wrong or has expired',
       rateLimited: 'Too many attempts. Please try again in a moment.',
       network: 'Could not connect. Check your internet connection.',
+      googleUnavailable: 'Google sign-in is not available on this device.',
       unknown: 'Something went wrong. Please try again.',
     },
   },
