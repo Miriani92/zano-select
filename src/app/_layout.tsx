@@ -31,7 +31,7 @@ export default function RootLayout() {
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Protected guard={user !== null}>
+      <Stack.Protected guard={user !== null} redirectTo="/welcome">
         <Stack.Screen name="(app)" />
       </Stack.Protected>
       <Stack.Protected guard={!user}>
