@@ -4,9 +4,9 @@
 
 ## Overview
 
-Expo Router (file-based routing) app, in early scaffolding stage — currently
-a single "Hello World" screen. Will grow into an e-commerce app (catalog,
-cart, checkout, orders). TypeScript throughout. Backend is Supabase (Auth,
+Expo Router (file-based routing) e-commerce app ("Zano Outlet"), early stage —
+only the `auth` feature (email OTP + Google sign-in) is built so far. Will grow
+to catalog, cart, checkout, orders. TypeScript throughout. Backend is Supabase (Auth,
 Postgres, Storage, Edge Functions); shared client lives at
 `src/infrastructure/supabase/client.ts`.
 
@@ -24,17 +24,26 @@ Routable screens live in `src/app`; other source lives under `src/` and is
 imported via the `@/*` path alias (`@/assets/*` maps to `assets/`), configured
 in `tsconfig.json`.
 
-- `src/app/_layout.tsx` — root layout, a bare `Stack` from `expo-router`.
-- `src/app/index.tsx` — the only screen, renders "Hello World".
+- `src/app/_layout.tsx` — root layout: loads fonts, restores language and
+  auth session behind the splash screen, then uses `Stack.Protected` to show
+  `(app)` for signed-in users and `(auth)` otherwise.
+- `src/app/(auth)/` — `welcome`, `email`, `verify` routes; `src/app/(app)/` —
+  the signed-in area (currently just `index`).
+- `src/features/auth/` — the only feature, fully layered (domain / data /
+  presentation) as described below; backed by Supabase Auth and
+  `@react-native-google-signin/google-signin`.
+- `src/di/container.ts` — wires `AuthRepository` to the Supabase
+  implementation and exports `authUseCases`.
+- `src/shared/theme/` — design tokens (colors, fonts, typography, spacing,
+  radius); `src/shared/ui/` — generic components (Button, Input, Text,
+  Checkbox, IconButton); `src/shared/i18n/` — i18next with `ka` and `en` locales.
+- `src/infrastructure/supabase/client.ts` — the shared Supabase client.
 
-There is no theming system, shared component library, feature folders, or tab
-navigation yet — add these back deliberately as the app grows, following the
-Target Architecture below, rather than assuming they exist or improvising a
-different structure.
+There is no tab navigation yet.
 
-## Target Architecture — Feature-based Clean Architecture
+## Architecture — Feature-based Clean Architecture
 
-As real features are added, follow this structure (see expo-project-structure
+Follow this structure for all features (see expo-project-structure
 skill for the `src/app/` routing rules, which stay in force):
 
 - `src/features/<name>/` — one folder per feature (catalog, cart, checkout,
