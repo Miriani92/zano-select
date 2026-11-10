@@ -10,6 +10,7 @@ export const ka = {
     hidePassword: 'პაროლის დამალვა',
   },
   auth: {
+    signOut: 'გასვლა',
     welcome: {
       title: 'კეთილი იყოს თქვენი მობრძანება Zano Outlet-ში',
       subtitle:

@@ -11,6 +11,7 @@ export const en: Translation = {
     hidePassword: 'Hide password',
   },
   auth: {
+    signOut: 'Log out',
     welcome: {
       title: 'Welcome to Zano Outlet',
       subtitle: 'Sign in or create an account in one step. No password needed.',
