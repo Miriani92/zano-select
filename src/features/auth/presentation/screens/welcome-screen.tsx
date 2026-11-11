@@ -47,7 +47,6 @@ export function WelcomeScreen({
         </IconButton>
       )}
 
-      {/* Same wordmark as the splash screen, so launch → welcome feels continuous. */}
       <Image
         source={
           scheme === 'dark'
