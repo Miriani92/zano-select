@@ -67,9 +67,7 @@ export function Button({
     ? colors.disabled
     : variant === 'primary'
       ? colors.primary
-      : variant === 'outline'
-        ? colors.background
-        : colors.surface;
+      : colors.surface;
 
   const textColor = isInactive
     ? colors.textSecondary

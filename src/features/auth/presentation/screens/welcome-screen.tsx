@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
-import { View } from 'react-native';
+import { Image, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useSignInWithGoogle } from '@/features/auth/presentation/hooks/use-sign-in-with-google';
 import { Trans, useTranslation } from '@/shared/i18n';
-import { fonts, radius, spacing, useColors } from '@/shared/theme';
+import { fonts, spacing, useColors } from '@/shared/theme';
 import { Button, ThemedText } from '@/shared/ui';
 
 export interface WelcomeScreenProps {
@@ -15,6 +15,7 @@ export interface WelcomeScreenProps {
 
 export function WelcomeScreen({ onContinueWithEmail }: WelcomeScreenProps) {
   const colors = useColors();
+  const scheme = useColorScheme();
   const { t } = useTranslation();
   const google = useSignInWithGoogle();
 
@@ -28,35 +29,26 @@ export function WelcomeScreen({ onContinueWithEmail }: WelcomeScreenProps) {
         paddingBottom: spacing.lg,
       }}
     >
-      <View
-        style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.sm }}
-      >
-        <View
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: radius.sm,
-            backgroundColor: colors.primary,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <ThemedText
-            variant="headline"
-            style={{ color: colors.onPrimary, fontFamily: fonts.extraBold }}
-          >
-            Z
-          </ThemedText>
-        </View>
-        <ThemedText variant="headline" style={{ fontFamily: fonts.extraBold }}>
-          {t('common.appName')}
-        </ThemedText>
-      </View>
+      {/* Same wordmark as the splash screen, so launch → welcome feels continuous. */}
+      <Image
+        source={
+          scheme === 'dark'
+            ? require('@/assets/images/logo-wordmark-dark.png')
+            : require('@/assets/images/logo-wordmark.png')
+        }
+        accessibilityRole="image"
+        accessibilityLabel={t('common.appName')}
+        resizeMode="contain"
+        style={{ width: 190, height: 78, alignSelf: 'center' }}
+      />
 
       <View style={{ marginTop: spacing.xxl, gap: spacing.sm }}>
         <ThemedText variant="title" accessibilityRole="header">
           {t('auth.welcome.title')}
         </ThemedText>
+        <View
+          style={{ width: 40, height: 1, backgroundColor: colors.accent }}
+        />
         <ThemedText variant="body" color="textSecondary">
           {t('auth.welcome.subtitle')}
         </ThemedText>

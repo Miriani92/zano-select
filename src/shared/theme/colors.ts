@@ -8,34 +8,39 @@ export type ColorTokens = {
   border: string;
   primary: string;
   onPrimary: string;
+  /** Gold brand accent: thin lines and small highlights only, never text or fills. */
+  accent: string;
   disabled: string;
   placeholder: string;
   error: string;
 };
 
+// From the "A · Ivory & Charcoal" artboard on the design canvas (see docs/design.md).
 const light: ColorTokens = {
-  background: '#FFFFFF',
-  surface: '#F4F5F2',
-  text: '#16181A',
-  textSecondary: '#5B6168',
-  border: '#C9CDD1',
-  primary: '#0F6B4F',
-  onPrimary: '#FFFFFF',
-  disabled: '#D5D8DB',
-  placeholder: '#7A8087',
+  background: '#F8FAFC',
+  surface: '#FFFFFF',
+  text: '#1F1D1B',
+  textSecondary: '#6B655D',
+  border: '#D9D1C3',
+  primary: '#202923',
+  onPrimary: '#F5F0E8',
+  accent: '#B8975A',
+  disabled: '#E2DBCF',
+  placeholder: '#8A847B',
   error: '#A3321C',
 };
 
 const dark: ColorTokens = {
-  background: '#0B0D10',
-  surface: '#1A1D1B',
-  text: '#F2F3F5',
-  textSecondary: '#A3A9AF',
-  border: '#3A3F44',
-  primary: '#4CC79A',
-  onPrimary: '#04261A',
-  disabled: '#3A3D42',
-  placeholder: '#7A808A',
+  background: '#1A1C1B',
+  surface: '#242826',
+  text: '#F5F0E8',
+  textSecondary: '#B5AEA3',
+  border: '#3F4541',
+  primary: '#F5F0E8',
+  onPrimary: '#202923',
+  accent: '#C9AC74',
+  disabled: '#343936',
+  placeholder: '#8A847B',
   error: '#F2876F',
 };
 
