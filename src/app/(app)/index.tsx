@@ -1,27 +1,13 @@
-import { StyleSheet, View } from 'react-native';
-
-import { SignOutButton } from '@/features/auth/presentation/components/sign-out-button';
 import { useTranslation } from '@/shared/i18n';
-import { spacing } from '@/shared/theme';
-import { ThemedText } from '@/shared/ui';
+import { ScreenPlaceholder } from '@/shared/ui';
 
-// Placeholder until the home/profile features exist; the log-out button moves to profile then.
-export default function App() {
+// Placeholder until the home screen is designed.
+export default function HomeRoute() {
   const { t } = useTranslation();
   return (
-    <View style={styles.container}>
-      <ThemedText>{t('auth.welcome.title')}</ThemedText>
-      <SignOutButton />
-    </View>
+    <ScreenPlaceholder
+      title={t('tabs.home')}
+      message={t('common.comingSoon')}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: spacing.lg,
-    padding: spacing.lg,
-  },
-});
