@@ -3,7 +3,19 @@ export const ka = {
   common: {
     appName: 'Zano Outlet',
     back: 'უკან',
+    close: 'დახურვა',
+    or: 'ან',
+    comingSoon: 'მალე დაემატება',
     genericError: 'რაღაც შეცდომა მოხდა. სცადეთ თავიდან.',
+  },
+  tabs: {
+    home: 'მთავარი',
+    catalog: 'კატალოგი',
+    cart: 'კალათა',
+    profile: 'პროფილი',
+  },
+  cart: {
+    empty: 'კალათა ცარიელია',
   },
   input: {
     showPassword: 'პაროლის ჩვენება',
@@ -17,9 +29,16 @@ export const ka = {
         'შედით ან შექმენით ანგარიში ერთი ნაბიჯით. პაროლი საჭირო არ არის.',
       continueWithApple: 'გაგრძელება Apple-ით',
       continueWithGoogle: 'გაგრძელება Google-ით',
+      browseAsGuest: 'დათვალიერება შესვლის გარეშე',
       continueWithEmail: 'გაგრძელება ელფოსტით',
       legal:
         'გაგრძელებით ეთანხმებით ჩვენს <terms>წესებს</terms> და <privacy>კონფიდენციალურობის პოლიტიკას</privacy>.',
+    },
+    signInGate: {
+      title: 'შედით ანგარიშზე',
+      signIn: 'შესვლა',
+      cart: 'კალათის გამოსაყენებლად შედით ანგარიშზე.',
+      profile: 'შედით, რომ ნახოთ თქვენი პროფილი და შეკვეთები.',
     },
     email: {
       title: 'რა არის თქვენი ელფოსტა?',

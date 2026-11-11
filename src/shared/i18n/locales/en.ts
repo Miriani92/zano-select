@@ -4,7 +4,19 @@ export const en: Translation = {
   common: {
     appName: 'Zano Outlet',
     back: 'Back',
+    close: 'Close',
+    or: 'or',
+    comingSoon: 'Coming soon',
     genericError: 'Something went wrong. Please try again.',
+  },
+  tabs: {
+    home: 'Home',
+    catalog: 'Catalog',
+    cart: 'Cart',
+    profile: 'Profile',
+  },
+  cart: {
+    empty: 'Your cart is empty',
   },
   input: {
     showPassword: 'Show password',
@@ -17,9 +29,16 @@ export const en: Translation = {
       subtitle: 'Sign in or create an account in one step. No password needed.',
       continueWithApple: 'Continue with Apple',
       continueWithGoogle: 'Continue with Google',
+      browseAsGuest: 'Browse without signing in',
       continueWithEmail: 'Continue with email',
       legal:
         'By continuing you agree to our <terms>Terms</terms> and <privacy>Privacy Policy</privacy>.',
+    },
+    signInGate: {
+      title: 'Sign in to your account',
+      signIn: 'Sign in',
+      cart: 'Sign in to use your cart.',
+      profile: 'Sign in to see your profile and orders.',
     },
     email: {
       title: "What's your email?",

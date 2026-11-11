@@ -13,3 +13,7 @@ export {
 } from './icon-button';
 export { Input, type InputProps, type InputType } from './input';
 export { Checkbox, type CheckboxProps } from './checkbox';
+export {
+  ScreenPlaceholder,
+  type ScreenPlaceholderProps,
+} from './screen-placeholder';
