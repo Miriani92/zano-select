@@ -1,19 +1,27 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image, useColorScheme, View } from 'react-native';
+import { Image, Pressable, useColorScheme, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useSignInWithGoogle } from '@/features/auth/presentation/hooks/use-sign-in-with-google';
 import { Trans, useTranslation } from '@/shared/i18n';
 import { fonts, spacing, useColors } from '@/shared/theme';
-import { Button, ThemedText } from '@/shared/ui';
+import { Button, IconButton, ThemedText } from '@/shared/ui';
 
 export interface WelcomeScreenProps {
   onContinueWithEmail: () => void;
+  /** Shown to visitors who haven't chosen guest mode yet. */
+  onBrowseAsGuest?: () => void;
+  /** Shown when a guest opened this screen to sign in. */
+  onClose?: () => void;
   /** Apple sign-in comes later. */
   onContinueWithApple?: () => void;
 }
 
-export function WelcomeScreen({ onContinueWithEmail }: WelcomeScreenProps) {
+export function WelcomeScreen({
+  onContinueWithEmail,
+  onBrowseAsGuest,
+  onClose,
+}: WelcomeScreenProps) {
   const colors = useColors();
   const scheme = useColorScheme();
   const { t } = useTranslation();
@@ -25,10 +33,20 @@ export function WelcomeScreen({ onContinueWithEmail }: WelcomeScreenProps) {
         flex: 1,
         backgroundColor: colors.background,
         paddingHorizontal: spacing.lg,
-        paddingTop: spacing.xl,
+        paddingTop: onClose ? spacing.sm : spacing.xl,
         paddingBottom: spacing.lg,
       }}
     >
+      {onClose && (
+        <IconButton
+          accessibilityLabel={t('common.close')}
+          onPress={onClose}
+          style={{ marginLeft: -spacing.sm, marginBottom: spacing.sm }}
+        >
+          <Ionicons name="close" size={24} color={colors.text} />
+        </IconButton>
+      )}
+
       {/* Same wordmark as the splash screen, so launch → welcome feels continuous. */}
       <Image
         source={
@@ -80,6 +98,45 @@ export function WelcomeScreen({ onContinueWithEmail }: WelcomeScreenProps) {
           onPress={onContinueWithEmail}
           disabled={google.isSigningIn}
         />
+        {onBrowseAsGuest && (
+          <>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: spacing.md,
+                marginTop: spacing.xs,
+              }}
+            >
+              <View
+                style={{ flex: 1, height: 1, backgroundColor: colors.border }}
+              />
+              <ThemedText variant="caption">{t('common.or')}</ThemedText>
+              <View
+                style={{ flex: 1, height: 1, backgroundColor: colors.border }}
+              />
+            </View>
+            <Pressable
+              accessibilityRole="button"
+              onPress={onBrowseAsGuest}
+              disabled={google.isSigningIn}
+              hitSlop={spacing.sm}
+              style={({ pressed }) => ({
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: spacing.xs,
+                paddingVertical: spacing.sm,
+                opacity: pressed ? 0.6 : 1,
+              })}
+            >
+              <ThemedText variant="body" style={{ fontFamily: fonts.semiBold }}>
+                {t('auth.welcome.browseAsGuest')}
+              </ThemedText>
+              <Ionicons name="arrow-forward" size={18} color={colors.text} />
+            </Pressable>
+          </>
+        )}
         {google.error && (
           <ThemedText
             variant="caption"
