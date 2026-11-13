@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { EMAIL_CODE_LENGTH } from '@/features/auth/domain/useCases/verify-email-code';
+import { EMAIL_CODE_LENGTH } from '@/features/auth/domain/entities/email';
 import { CodeInput } from '@/features/auth/presentation/components/code-input';
 import { useSendEmailCode } from '@/features/auth/presentation/hooks/use-send-email-code';
 import { useVerifyEmailCode } from '@/features/auth/presentation/hooks/use-verify-email-code';
