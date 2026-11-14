@@ -13,6 +13,9 @@ export type ColorTokens = {
   disabled: string;
   placeholder: string;
   error: string;
+  /** Sale badge background (e.g. "−55%"). */
+  sale: string;
+  onSale: string;
 };
 
 // From the "A · Ivory & Charcoal" artboard on the design canvas (see docs/design.md).
@@ -28,6 +31,8 @@ const light: ColorTokens = {
   disabled: '#E2DBCF',
   placeholder: '#8A847B',
   error: '#A3321C',
+  sale: '#9A3412',
+  onSale: '#FFFFFF',
 };
 
 const dark: ColorTokens = {
@@ -42,6 +47,8 @@ const dark: ColorTokens = {
   disabled: '#343936',
   placeholder: '#8A847B',
   error: '#F2876F',
+  sale: '#C2410C',
+  onSale: '#FFFFFF',
 };
 
 export function useColors(): ColorTokens {
