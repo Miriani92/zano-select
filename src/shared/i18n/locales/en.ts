@@ -15,6 +15,35 @@ export const en: Translation = {
     cart: 'Cart',
     profile: 'Profile',
   },
+  home: {
+    search: 'Search',
+    gender: {
+      women: 'Women',
+      men: 'Men',
+    },
+    bannerCta: 'Shop now',
+    rails: {
+      discounts: 'Biggest discounts',
+      newest: 'New collections',
+    },
+    seeAll: 'See all',
+    sortedBy: {
+      discounts: 'Sorted by discount',
+      newest: 'Sorted by newest',
+    },
+    wishlist: 'Wishlist',
+    error: {
+      title: "Couldn't load",
+      message: 'Check your internet connection and try again.',
+      retry: 'Try again',
+    },
+    signInSheet: {
+      title: 'Save what you love',
+      message: 'Sign in to add to your wishlist. No password needed.',
+      signIn: 'Sign in',
+      notNow: 'Not now',
+    },
+  },
   cart: {
     empty: 'Your cart is empty',
   },
