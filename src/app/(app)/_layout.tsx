@@ -46,7 +46,7 @@ export default function AppLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="(home)"
         options={{
           title: t('tabs.home'),
           tabBarIcon: tabIcon('home', 'home-outline'),

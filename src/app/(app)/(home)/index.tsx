@@ -5,8 +5,9 @@ import { HomeScreen } from '@/features/catalog/presentation/screens/home-screen'
 export default function HomeRoute() {
   return (
     <HomeScreen
-      // "See all" gets its own screen in the next step.
-      onSeeAll={() => {}}
+      onSeeAll={(rail, gender) =>
+        router.push({ pathname: '/rail/[rail]', params: { rail, gender } })
+      }
       // The Catalog tab doesn't filter by category yet.
       onCategory={() => router.navigate('/catalog')}
       onSignIn={() => router.push('/welcome')}

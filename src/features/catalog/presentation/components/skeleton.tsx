@@ -125,3 +125,27 @@ export function HomeSkeleton() {
     </SkeletonPulse>
   );
 }
+
+/** Two-column grid of card shapes, for the "See all" screen. */
+export function GridSkeleton({ imageHeight }: { imageHeight: number }) {
+  return (
+    <SkeletonPulse>
+      <View
+        style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          rowGap: 20,
+          columnGap: 12,
+          paddingTop: spacing.md,
+          paddingHorizontal: spacing.lg,
+        }}
+      >
+        {[0, 1, 2, 3].map((card) => (
+          <View key={card} style={{ width: '47%', flexGrow: 1 }}>
+            <ProductCardSkeleton width="100%" imageHeight={imageHeight} />
+          </View>
+        ))}
+      </View>
+    </SkeletonPulse>
+  );
+}
