@@ -1,13 +1,15 @@
-import { useTranslation } from '@/shared/i18n';
-import { ScreenPlaceholder } from '@/shared/ui';
+import { router } from 'expo-router';
 
-// Placeholder until the home screen is designed.
+import { HomeScreen } from '@/features/catalog/presentation/screens/home-screen';
+
 export default function HomeRoute() {
-  const { t } = useTranslation();
   return (
-    <ScreenPlaceholder
-      title={t('tabs.home')}
-      message={t('common.comingSoon')}
+    <HomeScreen
+      // "See all" gets its own screen in the next step.
+      onSeeAll={() => {}}
+      // The Catalog tab doesn't filter by category yet.
+      onCategory={() => router.navigate('/catalog')}
+      onSignIn={() => router.push('/welcome')}
     />
   );
 }
