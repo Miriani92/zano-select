@@ -1,4 +1,4 @@
-import { ScrollView, useColorScheme, View } from 'react-native';
+import { RefreshControl, ScrollView, useColorScheme, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -8,6 +8,7 @@ import type { Rail } from '@/features/catalog/domain/entities/rail';
 import { CategoryChips } from '@/features/catalog/presentation/components/category-chips';
 import { GenderSwitch } from '@/features/catalog/presentation/components/gender-switch';
 import { HeroBanner } from '@/features/catalog/presentation/components/hero-banner';
+import { LoadError } from '@/features/catalog/presentation/components/load-error';
 import { ProductRail } from '@/features/catalog/presentation/components/product-rail';
 import { HomeSkeleton } from '@/features/catalog/presentation/components/skeleton';
 import { useGenderPreference } from '@/features/catalog/presentation/hooks/use-gender-preference';
@@ -15,7 +16,6 @@ import { useHomeFeed } from '@/features/catalog/presentation/hooks/use-home-feed
 import { useWishlistHearts } from '@/features/wishlist/presentation/hooks/use-wishlist-hearts';
 import { useTranslation } from '@/shared/i18n';
 import { spacing, useColors } from '@/shared/theme';
-import { ThemedText } from '@/shared/ui';
 
 export interface HomeScreenProps {
   onSeeAll: (rail: Rail, gender: Gender) => void;
@@ -49,6 +49,13 @@ export function HomeScreen({
       style={{ flex: 1, backgroundColor: colors.background }}
     >
       <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={feed.isRefreshing}
+            onRefresh={feed.refresh}
+            tintColor={colors.textSecondary}
+          />
+        }
         contentContainerStyle={{
           paddingTop: spacing.sm,
           paddingBottom: spacing.lg,
@@ -78,11 +85,7 @@ export function HomeScreen({
 
         {feed.status === 'loading' && <HomeSkeleton />}
 
-        {feed.status === 'error' && (
-          <ThemedText style={{ textAlign: 'center' }}>
-            {t('home.error.title')}
-          </ThemedText>
-        )}
+        {feed.status === 'error' && <LoadError onRetry={feed.retry} />}
 
         {feed.data && gender && (
           <>
