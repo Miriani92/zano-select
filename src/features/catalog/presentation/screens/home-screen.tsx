@@ -1,9 +1,4 @@
-import {
-  ActivityIndicator,
-  ScrollView,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { ScrollView, useColorScheme, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -14,6 +9,7 @@ import { CategoryChips } from '@/features/catalog/presentation/components/catego
 import { GenderSwitch } from '@/features/catalog/presentation/components/gender-switch';
 import { HeroBanner } from '@/features/catalog/presentation/components/hero-banner';
 import { ProductRail } from '@/features/catalog/presentation/components/product-rail';
+import { HomeSkeleton } from '@/features/catalog/presentation/components/skeleton';
 import { useGenderPreference } from '@/features/catalog/presentation/hooks/use-gender-preference';
 import { useHomeFeed } from '@/features/catalog/presentation/hooks/use-home-feed';
 import { useWishlistHearts } from '@/features/wishlist/presentation/hooks/use-wishlist-hearts';
@@ -80,9 +76,7 @@ export function HomeScreen({
           </View>
         )}
 
-        {feed.status === 'loading' && (
-          <ActivityIndicator style={{ marginTop: spacing.xl }} />
-        )}
+        {feed.status === 'loading' && <HomeSkeleton />}
 
         {feed.status === 'error' && (
           <ThemedText style={{ textAlign: 'center' }}>
