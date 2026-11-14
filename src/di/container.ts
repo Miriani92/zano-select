@@ -11,7 +11,12 @@ import { makeSendEmailCode } from '@/features/auth/domain/useCases/send-email-co
 import { makeSignInWithGoogle } from '@/features/auth/domain/useCases/sign-in-with-google';
 import { makeSignOut } from '@/features/auth/domain/useCases/sign-out';
 import { makeVerifyEmailCode } from '@/features/auth/domain/useCases/verify-email-code';
+import { createAsyncStorageGenderPreferenceRepository } from '@/features/catalog/data/repositories/async-storage-gender-preference-repository';
 import { createSupabaseCatalogRepository } from '@/features/catalog/data/repositories/supabase-catalog-repository';
+import {
+  makeGetGenderPreference,
+  makeSetGenderPreference,
+} from '@/features/catalog/domain/useCases/gender-preference';
 import { makeGetHomeFeed } from '@/features/catalog/domain/useCases/get-home-feed';
 import { makeGetRailProducts } from '@/features/catalog/domain/useCases/get-rail-products';
 import { createSupabaseWishlistRepository } from '@/features/wishlist/data/repositories/supabase-wishlist-repository';
@@ -40,10 +45,14 @@ export const authUseCases = {
 };
 
 const catalogRepository = createSupabaseCatalogRepository(supabase);
+const genderPreferenceRepository =
+  createAsyncStorageGenderPreferenceRepository();
 
 export const catalogUseCases = {
   getHomeFeed: makeGetHomeFeed(catalogRepository),
   getRailProducts: makeGetRailProducts(catalogRepository),
+  getGenderPreference: makeGetGenderPreference(genderPreferenceRepository),
+  setGenderPreference: makeSetGenderPreference(genderPreferenceRepository),
 };
 
 const wishlistRepository = createSupabaseWishlistRepository(supabase);
