@@ -14,6 +14,9 @@ import { makeVerifyEmailCode } from '@/features/auth/domain/useCases/verify-emai
 import { createSupabaseCatalogRepository } from '@/features/catalog/data/repositories/supabase-catalog-repository';
 import { makeGetHomeFeed } from '@/features/catalog/domain/useCases/get-home-feed';
 import { makeGetRailProducts } from '@/features/catalog/domain/useCases/get-rail-products';
+import { createSupabaseWishlistRepository } from '@/features/wishlist/data/repositories/supabase-wishlist-repository';
+import { makeObserveWishlist } from '@/features/wishlist/domain/useCases/observe-wishlist';
+import { makeToggleWishlist } from '@/features/wishlist/domain/useCases/toggle-wishlist';
 import { supabase } from '@/infrastructure/supabase/client';
 
 // Composition root: the only place that knows which implementation backs each repository.
@@ -41,4 +44,11 @@ const catalogRepository = createSupabaseCatalogRepository(supabase);
 export const catalogUseCases = {
   getHomeFeed: makeGetHomeFeed(catalogRepository),
   getRailProducts: makeGetRailProducts(catalogRepository),
+};
+
+const wishlistRepository = createSupabaseWishlistRepository(supabase);
+
+export const wishlistUseCases = {
+  observeWishlist: makeObserveWishlist(wishlistRepository),
+  toggleWishlist: makeToggleWishlist(wishlistRepository),
 };
