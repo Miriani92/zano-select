@@ -11,6 +11,9 @@ import { makeSendEmailCode } from '@/features/auth/domain/useCases/send-email-co
 import { makeSignInWithGoogle } from '@/features/auth/domain/useCases/sign-in-with-google';
 import { makeSignOut } from '@/features/auth/domain/useCases/sign-out';
 import { makeVerifyEmailCode } from '@/features/auth/domain/useCases/verify-email-code';
+import { createSupabaseCatalogRepository } from '@/features/catalog/data/repositories/supabase-catalog-repository';
+import { makeGetHomeFeed } from '@/features/catalog/domain/useCases/get-home-feed';
+import { makeGetRailProducts } from '@/features/catalog/domain/useCases/get-rail-products';
 import { supabase } from '@/infrastructure/supabase/client';
 
 // Composition root: the only place that knows which implementation backs each repository.
@@ -31,4 +34,11 @@ export const authUseCases = {
     browseAsGuest: makeBrowseAsGuest(guestModeRepository),
     observeGuestMode: makeObserveGuestMode(guestModeRepository),
   },
+};
+
+const catalogRepository = createSupabaseCatalogRepository(supabase);
+
+export const catalogUseCases = {
+  getHomeFeed: makeGetHomeFeed(catalogRepository),
+  getRailProducts: makeGetRailProducts(catalogRepository),
 };
