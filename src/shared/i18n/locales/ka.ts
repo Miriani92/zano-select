@@ -44,6 +44,38 @@ export const ka = {
       notNow: 'ახლა არა',
     },
   },
+  catalog: {
+    title: 'კატალოგი',
+    all: 'ყველა',
+    filter: 'ფილტრი',
+    sort: 'დალაგება',
+    productCount_one: '{{count}} პროდუქტი',
+    productCount_other: '{{count}} პროდუქტი',
+    sorts: {
+      newest: 'ახალი',
+      discount: 'ყველაზე დიდი ფასდაკლება',
+      priceAsc: 'ფასი: ზრდადობით',
+      priceDesc: 'ფასი: კლებადობით',
+    },
+    sortsShort: {
+      newest: 'ახალი',
+      discount: 'ფასდაკლება',
+      priceAsc: 'ფასი ↑',
+      priceDesc: 'ფასი ↓',
+    },
+    filterSheet: {
+      category: 'კატეგორია',
+      brand: 'ბრენდი',
+      clear: 'გასუფთავება',
+      show: 'ჩვენება ({{count}})',
+      showLoading: 'ჩვენება',
+    },
+    noResults: {
+      title: 'ვერაფერი მოიძებნა',
+      message: 'ამ ფილტრებით პროდუქტი არ არის. სცადე სხვა კატეგორია ან ბრენდი.',
+      clear: 'ფილტრების გასუფთავება',
+    },
+  },
   cart: {
     empty: 'კალათა ცარიელია',
   },

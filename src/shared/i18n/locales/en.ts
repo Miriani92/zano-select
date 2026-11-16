@@ -44,6 +44,39 @@ export const en: Translation = {
       notNow: 'Not now',
     },
   },
+  catalog: {
+    title: 'Catalog',
+    all: 'All',
+    filter: 'Filter',
+    sort: 'Sort',
+    productCount_one: '{{count}} product',
+    productCount_other: '{{count}} products',
+    sorts: {
+      newest: 'Newest',
+      discount: 'Biggest discount',
+      priceAsc: 'Price: low to high',
+      priceDesc: 'Price: high to low',
+    },
+    sortsShort: {
+      newest: 'Newest',
+      discount: 'Discount',
+      priceAsc: 'Price ↑',
+      priceDesc: 'Price ↓',
+    },
+    filterSheet: {
+      category: 'Category',
+      brand: 'Brand',
+      clear: 'Clear',
+      show: 'Show ({{count}})',
+      showLoading: 'Show',
+    },
+    noResults: {
+      title: 'Nothing found',
+      message:
+        'No products match these filters. Try another category or brand.',
+      clear: 'Clear filters',
+    },
+  },
   cart: {
     empty: 'Your cart is empty',
   },
