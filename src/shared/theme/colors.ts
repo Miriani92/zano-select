@@ -16,6 +16,8 @@ export type ColorTokens = {
   /** Sale badge background (e.g. "−55%"). */
   sale: string;
   onSale: string;
+  /** Dims the screen behind a modal or bottom sheet. */
+  scrim: string;
 };
 
 // From the "A · Ivory & Charcoal" artboard on the design canvas (see docs/design.md).
@@ -33,6 +35,7 @@ const light: ColorTokens = {
   error: '#A3321C',
   sale: '#9A3412',
   onSale: '#FFFFFF',
+  scrim: 'rgba(31,29,27,0.45)',
 };
 
 const dark: ColorTokens = {
@@ -49,6 +52,7 @@ const dark: ColorTokens = {
   error: '#F2876F',
   sale: '#C2410C',
   onSale: '#FFFFFF',
+  scrim: 'rgba(0,0,0,0.6)',
 };
 
 export function useColors(): ColorTokens {
