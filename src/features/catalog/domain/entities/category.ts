@@ -1,8 +1,4 @@
-// Text stored in both app languages; the screen picks the one to show.
-export interface LocalizedText {
-  ka: string;
-  en: string;
-}
+import type { LocalizedText } from '@/shared/i18n/localized-text';
 
 // A product category shown as a chip on Home (Clothing, Shoes, Bags, Accessories).
 export interface Category {

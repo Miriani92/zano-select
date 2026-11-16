@@ -7,7 +7,7 @@ import {
   isOnSale,
   type Product,
 } from '@/features/catalog/domain/entities/product';
-import { useLocalized } from '@/features/catalog/presentation/hooks/use-localized';
+import { useLocalized } from '@/shared/i18n/use-localized';
 import { fonts, radius, useColors } from '@/shared/theme';
 import { ThemedText } from '@/shared/ui';
 import { formatPrice } from '@/shared/utils/money';

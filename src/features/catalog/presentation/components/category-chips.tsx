@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import { Pressable, ScrollView, View } from 'react-native';
 
 import type { Category } from '@/features/catalog/domain/entities/category';
-import { useLocalized } from '@/features/catalog/presentation/hooks/use-localized';
+import { useLocalized } from '@/shared/i18n/use-localized';
 import { fonts, spacing, useColors } from '@/shared/theme';
 import { ThemedText } from '@/shared/ui';
 

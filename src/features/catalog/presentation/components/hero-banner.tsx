@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import type { Banner } from '@/features/catalog/domain/entities/banner';
-import { useLocalized } from '@/features/catalog/presentation/hooks/use-localized';
+import { useLocalized } from '@/shared/i18n/use-localized';
 import { useTranslation } from '@/shared/i18n';
 import { fonts, spacing, useColors } from '@/shared/theme';
 import { ThemedText } from '@/shared/ui';

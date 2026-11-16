@@ -1,4 +1,4 @@
-import type { LocalizedText } from '@/features/catalog/domain/entities/category';
+import type { LocalizedText } from '@/shared/i18n/localized-text';
 import type { Gender } from '@/features/catalog/domain/entities/gender';
 import type { Rail } from '@/features/catalog/domain/entities/rail';
 
