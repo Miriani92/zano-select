@@ -8,9 +8,12 @@ import {
   type Product,
 } from '@/features/catalog/domain/entities/product';
 import { useLocalized } from '@/shared/i18n/use-localized';
-import { fonts, radius, useColors } from '@/shared/theme';
+import { borderWidth, fonts, radius, spacing, useColors } from '@/shared/theme';
 import { ThemedText } from '@/shared/ui';
 import { formatPrice } from '@/shared/utils/money';
+
+export const CARD_RADIUS = radius.lg;
+const PLACEHOLDER_ICON_SIZE = 32;
 
 export interface ProductCardProps {
   product: Product;
@@ -33,13 +36,13 @@ export function ProductCard({
   const photo = product.imageUrls[0];
 
   return (
-    <View style={{ width, gap: 8 }}>
+    <View style={{ width, gap: spacing.sm }}>
       <View
         style={{
           height: imageHeight,
-          borderRadius: 14,
+          borderRadius: CARD_RADIUS,
           overflow: 'hidden',
-          borderWidth: 1,
+          borderWidth: borderWidth.thin,
           borderColor: colors.border,
           backgroundColor: colors.surface,
           alignItems: 'center',
@@ -55,78 +58,64 @@ export function ProductCard({
             style={{ width: '100%', height: '100%' }}
           />
         ) : (
-          <Ionicons name="shirt-outline" size={32} color={colors.border} />
+          <Ionicons
+            name="shirt-outline"
+            size={PLACEHOLDER_ICON_SIZE}
+            color={colors.border}
+          />
         )}
         {onSale && (
           <View
             style={{
               position: 'absolute',
-              top: 8,
-              left: 8,
-              paddingVertical: 3,
-              paddingHorizontal: 8,
+              top: spacing.sm,
+              left: spacing.sm,
+              paddingVertical: spacing.xxs,
+              paddingHorizontal: spacing.sm,
               borderRadius: radius.sm,
               backgroundColor: colors.sale,
             }}
           >
             <ThemedText
-              style={{
-                fontSize: 12,
-                lineHeight: 16,
-                fontFamily: fonts.bold,
-                color: colors.onSale,
-              }}
+              variant="caption"
+              style={{ fontFamily: fonts.bold, color: colors.onSale }}
             >
               −{product.discountPct}%
             </ThemedText>
           </View>
         )}
         {accessory && (
-          <View style={{ position: 'absolute', top: 2, right: 2 }}>
+          <View
+            style={{
+              position: 'absolute',
+              top: spacing.xxs,
+              right: spacing.xxs,
+            }}
+          >
             {accessory}
           </View>
         )}
       </View>
-      <View style={{ gap: 2 }}>
-        <ThemedText
-          numberOfLines={1}
-          style={{
-            fontSize: 11,
-            lineHeight: 14,
-            letterSpacing: 0.6,
-            fontFamily: fonts.semiBold,
-            color: colors.textSecondary,
-          }}
-        >
+      <View style={{ gap: spacing.xxs }}>
+        <ThemedText variant="overline" numberOfLines={1}>
           {product.brand.toUpperCase()}
         </ThemedText>
-        <ThemedText
-          numberOfLines={1}
-          style={{ fontSize: 14, lineHeight: 19, fontFamily: fonts.regular }}
-        >
+        <ThemedText variant="subhead" color="text" numberOfLines={1}>
           {localized(product.name)}
         </ThemedText>
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'baseline',
-            gap: 6,
-            marginTop: 2,
+            gap: spacing.sm,
+            marginTop: spacing.xxs,
           }}
         >
-          <ThemedText
-            style={{ fontSize: 15, lineHeight: 20, fontFamily: fonts.bold }}
-          >
-            {formatPrice(product.price)}
-          </ThemedText>
+          <ThemedText variant="price">{formatPrice(product.price)}</ThemedText>
           {onSale && product.originalPrice !== null && (
             <ThemedText
-              style={{
-                fontSize: 12,
-                lineHeight: 16,
-                color: colors.textSecondary,
-                textDecorationLine: 'line-through',
-              }}
+              variant="caption"
+              style={{ textDecorationLine: 'line-through' }}
             >
               {formatPrice(product.originalPrice)}
             </ThemedText>

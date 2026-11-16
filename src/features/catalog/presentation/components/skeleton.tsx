@@ -5,7 +5,21 @@ import {
   RAIL_CARD_WIDTH,
   RAIL_IMAGE_HEIGHT,
 } from '@/features/catalog/presentation/components/product-rail';
-import { spacing, useColors } from '@/shared/theme';
+import {
+  CHIP_CIRCLE,
+  CHIP_WIDTH,
+} from '@/features/catalog/presentation/components/category-chips';
+import {
+  HERO_HEIGHT,
+  HERO_RADIUS,
+} from '@/features/catalog/presentation/components/hero-banner';
+import { CARD_RADIUS } from '@/features/catalog/presentation/components/product-card';
+import {
+  radius as radii,
+  spacing,
+  typography,
+  useColors,
+} from '@/shared/theme';
 
 interface BlockProps {
   width: DimensionValue;
@@ -14,7 +28,11 @@ interface BlockProps {
 }
 
 /** A gray placeholder shape; wrap a group in <SkeletonPulse> to animate it. */
-export function SkeletonBlock({ width, height, radius = 8 }: BlockProps) {
+export function SkeletonBlock({
+  width,
+  height,
+  radius = radii.sm,
+}: BlockProps) {
   const colors = useColors();
   return (
     <View
@@ -71,8 +89,8 @@ export function ProductCardSkeleton({
   imageHeight?: number;
 }) {
   return (
-    <View style={{ width, gap: 8 }}>
-      <SkeletonBlock width="100%" height={imageHeight} radius={14} />
+    <View style={{ width, gap: spacing.sm }}>
+      <SkeletonBlock width="100%" height={imageHeight} radius={CARD_RADIUS} />
       <SkeletonBlock width="40%" height={10} />
       <SkeletonBlock width="80%" height={14} />
       <SkeletonBlock width="35%" height={14} />
@@ -86,7 +104,11 @@ export function HomeSkeleton() {
     <SkeletonPulse>
       <View style={{ gap: spacing.lg }}>
         <View style={{ paddingHorizontal: spacing.lg }}>
-          <SkeletonBlock width="100%" height={188} radius={20} />
+          <SkeletonBlock
+            width="100%"
+            height={HERO_HEIGHT}
+            radius={HERO_RADIUS}
+          />
         </View>
         <View
           style={{
@@ -96,21 +118,35 @@ export function HomeSkeleton() {
           }}
         >
           {[0, 1, 2, 3].map((key) => (
-            <View key={key} style={{ width: 72, alignItems: 'center', gap: 8 }}>
-              <SkeletonBlock width={64} height={64} radius={32} />
+            <View
+              key={key}
+              style={{
+                width: CHIP_WIDTH,
+                alignItems: 'center',
+                gap: spacing.sm,
+              }}
+            >
+              <SkeletonBlock
+                width={CHIP_CIRCLE}
+                height={CHIP_CIRCLE}
+                radius={radii.full}
+              />
               <SkeletonBlock width={48} height={10} />
             </View>
           ))}
         </View>
         {[0, 1].map((rail) => (
-          <View key={rail} style={{ gap: 12 }}>
+          <View key={rail} style={{ gap: spacing.ms }}>
             <View style={{ paddingHorizontal: spacing.lg }}>
-              <SkeletonBlock width={180} height={18} />
+              <SkeletonBlock
+                width={180}
+                height={typography.sectionTitle.fontSize ?? 0}
+              />
             </View>
             <View
               style={{
                 flexDirection: 'row',
-                gap: 12,
+                gap: spacing.ms,
                 paddingHorizontal: spacing.lg,
                 overflow: 'hidden',
               }}
@@ -134,8 +170,8 @@ export function GridSkeleton({ imageHeight }: { imageHeight: number }) {
         style={{
           flexDirection: 'row',
           flexWrap: 'wrap',
-          rowGap: 20,
-          columnGap: 12,
+          rowGap: spacing.ml,
+          columnGap: spacing.ms,
           paddingTop: spacing.md,
           paddingHorizontal: spacing.lg,
         }}

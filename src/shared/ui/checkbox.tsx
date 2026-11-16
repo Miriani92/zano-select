@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Pressable, View, type StyleProp, type ViewStyle } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { radius, spacing, useColors } from '@/shared/theme';
+import { borderWidth, radius, spacing, useColors } from '@/shared/theme';
 
 export interface CheckboxProps {
   checked: boolean;
@@ -55,7 +55,7 @@ export function Checkbox({
           width: BOX_SIZE,
           height: BOX_SIZE,
           borderRadius: radius.sm,
-          borderWidth: 1.5,
+          borderWidth: borderWidth.medium,
           borderColor,
           backgroundColor,
           alignItems: 'center',

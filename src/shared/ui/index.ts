@@ -17,3 +17,4 @@ export {
   ScreenPlaceholder,
   type ScreenPlaceholderProps,
 } from './screen-placeholder';
+export { AccentRule } from './accent-rule';

@@ -36,9 +36,9 @@ export function ProductGrid({
         paddingTop: spacing.md,
         paddingHorizontal: spacing.lg,
         paddingBottom: spacing.lg,
-        gap: 20,
+        gap: spacing.ml,
       }}
-      columnWrapperStyle={{ gap: 12 }}
+      columnWrapperStyle={{ gap: spacing.ms }}
       refreshControl={
         onRefresh && (
           <RefreshControl

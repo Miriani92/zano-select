@@ -8,7 +8,13 @@ import {
   type ViewStyle,
 } from 'react-native';
 
-import { radius, spacing, useColors } from '@/shared/theme';
+import {
+  borderWidth,
+  radius,
+  spacing,
+  touchTarget,
+  useColors,
+} from '@/shared/theme';
 
 import { ThemedText } from './text';
 
@@ -27,7 +33,7 @@ const sizeStyles: Record<
   md: {
     paddingVertical: spacing.sm,
     paddingHorizontal: spacing.lg,
-    minHeight: 44,
+    minHeight: touchTarget,
   },
   lg: {
     paddingVertical: spacing.md,
@@ -86,7 +92,7 @@ export function Button({
         {
           backgroundColor,
           borderRadius: radius.md,
-          borderWidth: variant === 'outline' ? 1 : 0,
+          borderWidth: variant === 'outline' ? borderWidth.thin : 0,
           borderColor: colors.border,
           alignItems: 'center',
           justifyContent: 'center',

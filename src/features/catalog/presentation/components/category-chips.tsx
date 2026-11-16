@@ -4,7 +4,7 @@ import { Pressable, ScrollView, View } from 'react-native';
 
 import type { Category } from '@/features/catalog/domain/entities/category';
 import { useLocalized } from '@/shared/i18n/use-localized';
-import { fonts, spacing, useColors } from '@/shared/theme';
+import { borderWidth, fonts, spacing, useColors } from '@/shared/theme';
 import { ThemedText } from '@/shared/ui';
 
 export interface CategoryChipsProps {
@@ -12,7 +12,9 @@ export interface CategoryChipsProps {
   onPress: (category: Category) => void;
 }
 
-const CIRCLE = 64;
+export const CHIP_WIDTH = 72;
+export const CHIP_CIRCLE = 64;
+const PLACEHOLDER_ICON_SIZE = 22;
 
 // Horizontal row of round category photos with labels.
 export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
@@ -31,7 +33,7 @@ export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
           accessibilityRole="button"
           onPress={() => onPress(category)}
           style={({ pressed }) => ({
-            width: 72,
+            width: CHIP_WIDTH,
             alignItems: 'center',
             gap: spacing.sm,
             opacity: pressed ? 0.6 : 1,
@@ -39,11 +41,11 @@ export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
         >
           <View
             style={{
-              width: CIRCLE,
-              height: CIRCLE,
-              borderRadius: CIRCLE / 2,
+              width: CHIP_CIRCLE,
+              height: CHIP_CIRCLE,
+              borderRadius: CHIP_CIRCLE / 2,
               overflow: 'hidden',
-              borderWidth: 1,
+              borderWidth: borderWidth.thin,
               borderColor: colors.border,
               backgroundColor: colors.surface,
               alignItems: 'center',
@@ -55,24 +57,21 @@ export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
                 source={{ uri: category.imageUrl }}
                 contentFit="cover"
                 transition={200}
-                style={{ width: CIRCLE, height: CIRCLE }}
+                style={{ width: CHIP_CIRCLE, height: CHIP_CIRCLE }}
               />
             ) : (
               <Ionicons
                 name="pricetag-outline"
-                size={22}
+                size={PLACEHOLDER_ICON_SIZE}
                 color={colors.textSecondary}
               />
             )}
           </View>
           <ThemedText
             numberOfLines={2}
-            style={{
-              fontSize: 12,
-              lineHeight: 16,
-              fontFamily: fonts.medium,
-              textAlign: 'center',
-            }}
+            variant="caption"
+            color="text"
+            style={{ fontFamily: fonts.medium, textAlign: 'center' }}
           >
             {localized(category.name)}
           </ThemedText>

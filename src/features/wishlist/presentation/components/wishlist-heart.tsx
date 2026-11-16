@@ -2,7 +2,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { Pressable, View } from 'react-native';
 
 import { useTranslation } from '@/shared/i18n';
-import { useColors } from '@/shared/theme';
+import { radius, touchTarget, useColors } from '@/shared/theme';
+
+const CIRCLE = 32;
+const ICON_SIZE = 18;
 
 export interface WishlistHeartProps {
   saved: boolean;
@@ -21,8 +24,8 @@ export function WishlistHeart({ saved, onPress }: WishlistHeartProps) {
       accessibilityState={{ selected: saved }}
       onPress={onPress}
       style={({ pressed }) => ({
-        width: 44,
-        height: 44,
+        width: touchTarget,
+        height: touchTarget,
         alignItems: 'center',
         justifyContent: 'center',
         opacity: pressed ? 0.7 : 1,
@@ -30,9 +33,9 @@ export function WishlistHeart({ saved, onPress }: WishlistHeartProps) {
     >
       <View
         style={{
-          width: 32,
-          height: 32,
-          borderRadius: 16,
+          width: CIRCLE,
+          height: CIRCLE,
+          borderRadius: radius.full,
           backgroundColor: colors.surface,
           alignItems: 'center',
           justifyContent: 'center',
@@ -41,7 +44,7 @@ export function WishlistHeart({ saved, onPress }: WishlistHeartProps) {
       >
         <Ionicons
           name={saved ? 'heart' : 'heart-outline'}
-          size={18}
+          size={ICON_SIZE}
           color={colors.text}
         />
       </View>

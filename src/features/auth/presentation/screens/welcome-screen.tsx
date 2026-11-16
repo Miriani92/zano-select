@@ -4,8 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useSignInWithGoogle } from '@/features/auth/presentation/hooks/use-sign-in-with-google';
 import { Trans, useTranslation } from '@/shared/i18n';
-import { fonts, spacing, useColors } from '@/shared/theme';
-import { Button, IconButton, ThemedText } from '@/shared/ui';
+import { borderWidth, fonts, spacing, useColors } from '@/shared/theme';
+import { AccentRule, Button, IconButton, ThemedText } from '@/shared/ui';
+
+const LOGO_WIDTH = 190;
+const LOGO_HEIGHT = 78;
 
 export interface WelcomeScreenProps {
   onContinueWithEmail: () => void;
@@ -56,16 +59,14 @@ export function WelcomeScreen({
         accessibilityRole="image"
         accessibilityLabel={t('common.appName')}
         resizeMode="contain"
-        style={{ width: 190, height: 78, alignSelf: 'center' }}
+        style={{ width: LOGO_WIDTH, height: LOGO_HEIGHT, alignSelf: 'center' }}
       />
 
       <View style={{ marginTop: spacing.xxl, gap: spacing.sm }}>
         <ThemedText variant="title" accessibilityRole="header">
           {t('auth.welcome.title')}
         </ThemedText>
-        <View
-          style={{ width: 40, height: 1, backgroundColor: colors.accent }}
-        />
+        <AccentRule />
         <ThemedText variant="body" color="textSecondary">
           {t('auth.welcome.subtitle')}
         </ThemedText>
@@ -108,11 +109,19 @@ export function WelcomeScreen({
               }}
             >
               <View
-                style={{ flex: 1, height: 1, backgroundColor: colors.border }}
+                style={{
+                  flex: 1,
+                  height: borderWidth.thin,
+                  backgroundColor: colors.border,
+                }}
               />
               <ThemedText variant="caption">{t('common.or')}</ThemedText>
               <View
-                style={{ flex: 1, height: 1, backgroundColor: colors.border }}
+                style={{
+                  flex: 1,
+                  height: borderWidth.thin,
+                  backgroundColor: colors.border,
+                }}
               />
             </View>
             <Pressable

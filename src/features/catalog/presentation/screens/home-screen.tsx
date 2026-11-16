@@ -17,6 +17,9 @@ import { useWishlistHearts } from '@/features/wishlist/presentation/hooks/use-wi
 import { useTranslation } from '@/shared/i18n';
 import { spacing, useColors } from '@/shared/theme';
 
+const LOGO_WIDTH = 112;
+const LOGO_HEIGHT = 44;
+
 export interface HomeScreenProps {
   onSeeAll: (rail: Rail, gender: Gender) => void;
   onCategory: (slug: string) => void;
@@ -73,7 +76,7 @@ export function HomeScreen({
             accessibilityLabel={t('common.appName')}
             contentFit="contain"
             contentPosition="left center"
-            style={{ width: 112, height: 44 }}
+            style={{ width: LOGO_WIDTH, height: LOGO_HEIGHT }}
           />
         </View>
 

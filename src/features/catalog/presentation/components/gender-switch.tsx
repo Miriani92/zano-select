@@ -5,8 +5,10 @@ import {
   type Gender,
 } from '@/features/catalog/domain/entities/gender';
 import { useTranslation } from '@/shared/i18n';
-import { fonts, useColors } from '@/shared/theme';
+import { borderWidth, fonts, radius, spacing, useColors } from '@/shared/theme';
 import { ThemedText } from '@/shared/ui';
+
+const SEGMENT_HEIGHT = 40;
 
 export interface GenderSwitchProps {
   value: Gender;
@@ -23,10 +25,10 @@ export function GenderSwitch({ value, onChange }: GenderSwitchProps) {
       accessibilityRole="tablist"
       style={{
         flexDirection: 'row',
-        gap: 4,
-        padding: 4,
-        borderRadius: 14,
-        borderWidth: 1,
+        gap: spacing.xs,
+        padding: spacing.xs,
+        borderRadius: radius.lg,
+        borderWidth: borderWidth.thin,
         borderColor: colors.border,
         backgroundColor: colors.surface,
       }}
@@ -43,20 +45,17 @@ export function GenderSwitch({ value, onChange }: GenderSwitchProps) {
             }}
             style={{
               flex: 1,
-              height: 40,
-              borderRadius: 10,
+              height: SEGMENT_HEIGHT,
+              borderRadius: radius.md,
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: selected ? colors.primary : 'transparent',
             }}
           >
             <ThemedText
-              style={{
-                fontSize: 15,
-                lineHeight: 20,
-                fontFamily: selected ? fonts.semiBold : fonts.medium,
-                color: selected ? colors.onPrimary : colors.textSecondary,
-              }}
+              variant="label"
+              color={selected ? 'onPrimary' : 'textSecondary'}
+              style={selected && { fontFamily: fonts.semiBold }}
             >
               {t(`home.gender.${gender}`)}
             </ThemedText>

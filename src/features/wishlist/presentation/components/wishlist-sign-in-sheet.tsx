@@ -3,8 +3,13 @@ import { Modal, Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTranslation } from '@/shared/i18n';
-import { spacing, useColors } from '@/shared/theme';
-import { Button, ThemedText } from '@/shared/ui';
+import { borderWidth, radius, spacing, useColors } from '@/shared/theme';
+import { AccentRule, Button, ThemedText } from '@/shared/ui';
+
+const HANDLE_WIDTH = 40;
+const HANDLE_HEIGHT = 4;
+const ICON_CIRCLE = 64;
+const ICON_SIZE = 28;
 
 export interface WishlistSignInSheetProps {
   visible: boolean;
@@ -48,57 +53,66 @@ export function WishlistSignInSheet({
           accessibilityViewIsModal
           style={{
             backgroundColor: colors.surface,
-            borderTopLeftRadius: 24,
-            borderTopRightRadius: 24,
-            paddingTop: 12,
+            borderTopLeftRadius: radius.xxl,
+            borderTopRightRadius: radius.xxl,
+            paddingTop: spacing.ms,
             paddingHorizontal: spacing.lg,
             paddingBottom: Math.max(insets.bottom, spacing.lg) + spacing.sm,
             alignItems: 'center',
-            gap: 20,
+            gap: spacing.ml,
           }}
         >
           <View
             style={{
-              width: 40,
-              height: 4,
-              borderRadius: 2,
+              width: HANDLE_WIDTH,
+              height: HANDLE_HEIGHT,
+              borderRadius: radius.full,
               backgroundColor: colors.border,
             }}
           />
           <View
             style={{
-              width: 64,
-              height: 64,
-              borderRadius: 32,
-              marginTop: 4,
-              borderWidth: 1,
+              width: ICON_CIRCLE,
+              height: ICON_CIRCLE,
+              borderRadius: radius.full,
+              marginTop: spacing.xs,
+              borderWidth: borderWidth.thin,
               borderColor: colors.border,
               backgroundColor: colors.background,
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Ionicons name="heart-outline" size={28} color={colors.primary} />
+            <Ionicons
+              name="heart-outline"
+              size={ICON_SIZE}
+              color={colors.primary}
+            />
           </View>
-          <View style={{ alignItems: 'center', gap: 10 }}>
+          <View style={{ alignItems: 'center', gap: spacing.ms }}>
             <ThemedText
-              variant="headline"
+              variant="headlineLarge"
               accessibilityRole="header"
-              style={{ fontSize: 22, lineHeight: 29, textAlign: 'center' }}
+              style={{ textAlign: 'center' }}
             >
               {t('home.signInSheet.title')}
             </ThemedText>
-            <View
-              style={{ width: 40, height: 1, backgroundColor: colors.accent }}
-            />
+            <AccentRule />
             <ThemedText
+              variant="bodyLong"
               color="textSecondary"
-              style={{ fontSize: 15, lineHeight: 23, textAlign: 'center' }}
+              style={{ textAlign: 'center' }}
             >
               {t('home.signInSheet.message')}
             </ThemedText>
           </View>
-          <View style={{ alignSelf: 'stretch', gap: 12, marginTop: 4 }}>
+          <View
+            style={{
+              alignSelf: 'stretch',
+              gap: spacing.ms,
+              marginTop: spacing.xs,
+            }}
+          >
             <Button
               size="lg"
               title={t('home.signInSheet.signIn')}

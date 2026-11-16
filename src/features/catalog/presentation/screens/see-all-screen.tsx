@@ -13,7 +13,7 @@ import { GridSkeleton } from '@/features/catalog/presentation/components/skeleto
 import { useRailProducts } from '@/features/catalog/presentation/hooks/use-rail-products';
 import { useWishlistHearts } from '@/features/wishlist/presentation/hooks/use-wishlist-hearts';
 import { useTranslation } from '@/shared/i18n';
-import { fonts, spacing, useColors } from '@/shared/theme';
+import { borderWidth, spacing, touchTarget, useColors } from '@/shared/theme';
 import { IconButton, ThemedText } from '@/shared/ui';
 
 export interface SeeAllScreenProps {
@@ -47,30 +47,27 @@ export function SeeAllScreen({
           gap: spacing.sm,
           paddingHorizontal: spacing.md,
           paddingTop: spacing.sm,
-          paddingBottom: 12,
-          borderBottomWidth: 1,
+          paddingBottom: spacing.ms,
+          borderBottomWidth: borderWidth.thin,
           borderBottomColor: colors.border,
         }}
       >
         <IconButton
           accessibilityLabel={t('common.back')}
           onPress={onBack}
-          style={{ width: 44, height: 44 }}
+          style={{ width: touchTarget, height: touchTarget }}
         >
           <Ionicons name="chevron-back" size={22} color={colors.text} />
         </IconButton>
         <View style={{ flex: 1, minWidth: 0 }}>
           <ThemedText
             accessibilityRole="header"
+            variant="sectionTitle"
             numberOfLines={1}
-            style={{ fontSize: 18, lineHeight: 24, fontFamily: fonts.bold }}
           >
             {t(`home.rails.${rail}`)}
           </ThemedText>
-          <ThemedText
-            variant="caption"
-            style={{ fontSize: 13, lineHeight: 18 }}
-          >
+          <ThemedText variant="footnote">
             {`${t(`home.gender.${gender}`)} · ${t(`home.sortedBy.${rail}`)}`}
           </ThemedText>
         </View>

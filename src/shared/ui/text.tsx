@@ -17,7 +17,12 @@ function defaultColorFor(
   colors: ColorTokens,
 ): string {
   if (variant === 'error') return colors.error;
-  if (variant === 'subhead' || variant === 'caption')
+  if (
+    variant === 'subhead' ||
+    variant === 'caption' ||
+    variant === 'footnote' ||
+    variant === 'overline'
+  )
     return colors.textSecondary;
   return colors.text;
 }

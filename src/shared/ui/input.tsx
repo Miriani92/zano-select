@@ -9,7 +9,13 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from '@/shared/i18n';
-import { fonts, radius, spacing, useColors } from '@/shared/theme';
+import {
+  borderWidth,
+  radius,
+  spacing,
+  typography,
+  useColors,
+} from '@/shared/theme';
 import { IconButton } from './icon-button';
 import { ThemedText } from './text';
 
@@ -110,7 +116,7 @@ export function Input({
           flexDirection: 'row',
           alignItems: 'center',
           backgroundColor: colors.surface,
-          borderWidth: 1,
+          borderWidth: borderWidth.thin,
           borderColor: error ? colors.error : colors.border,
           borderRadius: radius.md,
           paddingHorizontal: spacing.md,
@@ -126,8 +132,8 @@ export function Input({
             {
               flex: 1,
               paddingVertical: spacing.sm,
-              fontSize: 16,
-              fontFamily: fonts.regular,
+              fontSize: typography.body.fontSize,
+              fontFamily: typography.body.fontFamily,
               color: colors.text,
             },
             style,

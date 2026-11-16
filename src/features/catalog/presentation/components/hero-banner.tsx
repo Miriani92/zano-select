@@ -5,8 +5,13 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import type { Banner } from '@/features/catalog/domain/entities/banner';
 import { useLocalized } from '@/shared/i18n/use-localized';
 import { useTranslation } from '@/shared/i18n';
-import { fonts, spacing, useColors } from '@/shared/theme';
-import { ThemedText } from '@/shared/ui';
+import { radius, spacing, useColors } from '@/shared/theme';
+import { AccentRule, ThemedText } from '@/shared/ui';
+
+export const HERO_HEIGHT = 188;
+export const HERO_RADIUS = radius.xl;
+const TEXT_MAX_WIDTH = 240;
+const CTA_ICON_SIZE = 16;
 
 export interface HeroBannerProps {
   banner: Banner;
@@ -26,8 +31,8 @@ export function HeroBanner({ banner, onPress }: HeroBannerProps) {
       accessibilityLabel={`${localized(banner.eyebrow)}. ${title}`}
       onPress={() => onPress(banner)}
       style={({ pressed }) => ({
-        height: 188,
-        borderRadius: 20,
+        height: HERO_HEIGHT,
+        borderRadius: HERO_RADIUS,
         overflow: 'hidden',
         backgroundColor: colors.primary,
         opacity: pressed ? 0.9 : 1,
@@ -57,45 +62,30 @@ export function HeroBanner({ banner, onPress }: HeroBannerProps) {
           justifyContent: 'space-between',
         }}
       >
-        <View style={{ gap: 10, maxWidth: 240 }}>
-          <ThemedText
-            style={{
-              fontSize: 12,
-              lineHeight: 16,
-              letterSpacing: 1,
-              fontFamily: fonts.semiBold,
-              color: colors.accent,
-            }}
-          >
+        <View style={{ gap: spacing.ms, maxWidth: TEXT_MAX_WIDTH }}>
+          <ThemedText variant="overline" color="accent">
             {localized(banner.eyebrow)}
           </ThemedText>
-          <ThemedText
-            numberOfLines={2}
-            style={{
-              fontSize: 26,
-              lineHeight: 32,
-              fontFamily: fonts.bold,
-              color: colors.onPrimary,
-            }}
-          >
+          <ThemedText variant="display" color="onPrimary" numberOfLines={2}>
             {title}
           </ThemedText>
-          <View
-            style={{ width: 40, height: 1, backgroundColor: colors.accent }}
-          />
+          <AccentRule />
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <ThemedText
-            style={{
-              fontSize: 14,
-              lineHeight: 20,
-              fontFamily: fonts.semiBold,
-              color: colors.onPrimary,
-            }}
-          >
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: spacing.sm,
+          }}
+        >
+          <ThemedText variant="link" color="onPrimary">
             {t('home.bannerCta')}
           </ThemedText>
-          <Ionicons name="arrow-forward" size={16} color={colors.onPrimary} />
+          <Ionicons
+            name="arrow-forward"
+            size={CTA_ICON_SIZE}
+            color={colors.onPrimary}
+          />
         </View>
       </View>
     </Pressable>

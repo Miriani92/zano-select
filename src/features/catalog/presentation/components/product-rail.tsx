@@ -4,7 +4,7 @@ import { FlatList, Pressable, View } from 'react-native';
 import type { Product } from '@/features/catalog/domain/entities/product';
 import { ProductCard } from '@/features/catalog/presentation/components/product-card';
 import { useTranslation } from '@/shared/i18n';
-import { fonts, spacing, useColors } from '@/shared/theme';
+import { spacing } from '@/shared/theme';
 import { ThemedText } from '@/shared/ui';
 
 export const RAIL_CARD_WIDTH = 148;
@@ -25,13 +25,12 @@ export function ProductRail({
   onSeeAll,
   accessoryFor,
 }: ProductRailProps) {
-  const colors = useColors();
   const { t } = useTranslation();
 
   if (products.length === 0) return null;
 
   return (
-    <View style={{ gap: 12 }}>
+    <View style={{ gap: spacing.ms }}>
       <View
         style={{
           paddingHorizontal: spacing.lg,
@@ -44,12 +43,8 @@ export function ProductRail({
         <ThemedText
           accessibilityRole="header"
           numberOfLines={1}
-          style={{
-            flexShrink: 1,
-            fontSize: 18,
-            lineHeight: 24,
-            fontFamily: fonts.bold,
-          }}
+          variant="sectionTitle"
+          style={{ flexShrink: 1 }}
         >
           {title}
         </ThemedText>
@@ -59,14 +54,7 @@ export function ProductRail({
           onPress={onSeeAll}
           hitSlop={spacing.sm}
         >
-          <ThemedText
-            style={{
-              fontSize: 14,
-              lineHeight: 20,
-              fontFamily: fonts.semiBold,
-              color: colors.textSecondary,
-            }}
-          >
+          <ThemedText variant="link" color="textSecondary">
             {t('home.seeAll')}
           </ThemedText>
         </Pressable>
@@ -76,7 +64,10 @@ export function ProductRail({
         data={products}
         keyExtractor={(product) => product.id}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: spacing.lg, gap: 12 }}
+        contentContainerStyle={{
+          paddingHorizontal: spacing.lg,
+          gap: spacing.ms,
+        }}
         renderItem={({ item }) => (
           <ProductCard
             product={item}

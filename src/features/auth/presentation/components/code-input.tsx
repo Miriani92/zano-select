@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 
-import { radius, spacing, useColors } from '@/shared/theme';
+import { borderWidth, radius, spacing, useColors } from '@/shared/theme';
 import { ThemedText } from '@/shared/ui';
 
 export interface CodeInputProps {
@@ -15,6 +15,8 @@ export interface CodeInputProps {
 
 // One hidden TextInput drawn as separate boxes, so paste and iOS/Android
 // one-time-code autofill work with no extra logic.
+const CELL_HEIGHT = 56;
+
 export function CodeInput({
   value,
   onChange,
@@ -42,9 +44,9 @@ export function CodeInput({
               key={index}
               style={{
                 flex: 1,
-                height: 56,
+                height: CELL_HEIGHT,
                 borderRadius: radius.md,
-                borderWidth: isActive ? 2 : 1,
+                borderWidth: isActive ? borderWidth.thick : borderWidth.thin,
                 borderColor: error
                   ? colors.error
                   : isActive
