@@ -67,9 +67,7 @@ export function Checkbox({
         ) : null}
       </View>
       {children ? (
-        <View style={{ marginLeft: spacing.sm, flexShrink: 1 }}>
-          {children}
-        </View>
+        <View style={{ marginLeft: spacing.sm, flex: 1 }}>{children}</View>
       ) : null}
     </Pressable>
   );

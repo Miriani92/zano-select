@@ -18,3 +18,4 @@ export {
   type ScreenPlaceholderProps,
 } from './screen-placeholder';
 export { AccentRule } from './accent-rule';
+export { BottomSheet, type BottomSheetProps } from './bottom-sheet';
