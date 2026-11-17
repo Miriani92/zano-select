@@ -1,13 +1,22 @@
-import { useTranslation } from '@/shared/i18n';
-import { ScreenPlaceholder } from '@/shared/ui';
+import { router, useLocalSearchParams } from 'expo-router';
 
-// Placeholder until the catalog feature exists.
+import { CatalogScreen } from '@/features/catalog/presentation/screens/catalog-screen';
+
+// /catalog?category=shoes&at=1731744000000 — `at` makes a repeated request count.
 export default function CatalogRoute() {
-  const { t } = useTranslation();
+  const { category, at } = useLocalSearchParams<{
+    category?: string;
+    at?: string;
+  }>();
+
   return (
-    <ScreenPlaceholder
-      title={t('tabs.catalog')}
-      message={t('common.comingSoon')}
+    <CatalogScreen
+      categoryRequest={
+        category
+          ? { slug: category, requestKey: `${category}:${at}` }
+          : undefined
+      }
+      onSignIn={() => router.push('/welcome')}
     />
   );
 }

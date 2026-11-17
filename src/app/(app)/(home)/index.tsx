@@ -8,8 +8,12 @@ export default function HomeRoute() {
       onSeeAll={(rail, gender) =>
         router.push({ pathname: '/rail/[rail]', params: { rail, gender } })
       }
-      // The Catalog tab doesn't filter by category yet.
-      onCategory={() => router.navigate('/catalog')}
+      onCategory={(slug) =>
+        router.navigate({
+          pathname: '/catalog',
+          params: { category: slug, at: String(Date.now()) },
+        })
+      }
       onSignIn={() => router.push('/welcome')}
     />
   );

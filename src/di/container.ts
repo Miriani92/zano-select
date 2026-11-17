@@ -17,6 +17,11 @@ import {
   makeGetGenderPreference,
   makeSetGenderPreference,
 } from '@/features/catalog/domain/useCases/gender-preference';
+import {
+  makeCountCatalogProducts,
+  makeGetCatalogFilterOptions,
+  makeGetCatalogProducts,
+} from '@/features/catalog/domain/useCases/get-catalog-products';
 import { makeGetHomeFeed } from '@/features/catalog/domain/useCases/get-home-feed';
 import { makeGetRailProducts } from '@/features/catalog/domain/useCases/get-rail-products';
 import { createSupabaseWishlistRepository } from '@/features/wishlist/data/repositories/supabase-wishlist-repository';
@@ -51,6 +56,9 @@ const genderPreferenceRepository =
 export const catalogUseCases = {
   getHomeFeed: makeGetHomeFeed(catalogRepository),
   getRailProducts: makeGetRailProducts(catalogRepository),
+  getCatalogProducts: makeGetCatalogProducts(catalogRepository),
+  countCatalogProducts: makeCountCatalogProducts(catalogRepository),
+  getCatalogFilterOptions: makeGetCatalogFilterOptions(catalogRepository),
   getGenderPreference: makeGetGenderPreference(genderPreferenceRepository),
   setGenderPreference: makeSetGenderPreference(genderPreferenceRepository),
 };
