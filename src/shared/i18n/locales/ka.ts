@@ -76,6 +76,20 @@ export const ka = {
       clear: 'ფილტრების გასუფთავება',
     },
   },
+  product: {
+    photo: 'ფოტო {{index}} / {{count}}',
+    size: 'ზომა',
+    chooseSize: 'აირჩიე ზომა',
+    soldOut: '{{size}}, ამოიწურა',
+    description: 'აღწერა',
+    addToCart: 'კალათაში დამატება',
+    addedToCart: 'დამატებულია კალათაში',
+    unavailable: {
+      title: 'პროდუქტი აღარ არის',
+      message: 'ეს პროდუქტი გაიყიდა ან აღარ იყიდება.',
+      back: 'უკან დაბრუნება',
+    },
+  },
   cart: {
     empty: 'კალათა ცარიელია',
   },

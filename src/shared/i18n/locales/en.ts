@@ -77,6 +77,20 @@ export const en: Translation = {
       clear: 'Clear filters',
     },
   },
+  product: {
+    photo: 'Photo {{index}} of {{count}}',
+    size: 'Size',
+    chooseSize: 'Choose a size',
+    soldOut: '{{size}}, sold out',
+    description: 'Description',
+    addToCart: 'Add to cart',
+    addedToCart: 'Added to cart',
+    unavailable: {
+      title: 'No longer available',
+      message: 'This product sold out or is no longer for sale.',
+      back: 'Go back',
+    },
+  },
   cart: {
     empty: 'Your cart is empty',
   },
