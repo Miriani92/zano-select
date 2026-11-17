@@ -44,3 +44,47 @@ from (values
 ) as v(category_slug, gender, brand, name_ka, name_en, price, original_price, age)
 join public.categories c on c.slug = v.category_slug
 where not exists (select 1 from public.products);
+
+-- Product detail (needs 20261117120000_add_product_detail.sql). Safe to run again.
+update public.products p
+set description_ka = v.description_ka,
+    description_en = v.description_en
+from (values
+  ('Wool coat',        'შალის პალტო სწორი ჭრილით, ორი ჯიბით და ღილებით.',        'Straight-cut wool coat with two pockets and buttons.'),
+  ('Leather boots',    'ნატურალური ტყავის ჩექმა დაბალ ქუსლზე.',                    'Genuine leather boots on a low heel.'),
+  ('Silk shirt',       'მსუბუქი აბრეშუმის პერანგი თავისუფალი ჭრილით.',            'Light silk shirt with a relaxed fit.'),
+  ('Leather bag',      'ტყავის ჩანთა ორი განყოფილებით და მხრის თასმით.',         'Leather bag with two compartments and a shoulder strap.'),
+  ('Cashmere scarf',   'რბილი კაშემირის შარფი.',                                   'Soft cashmere scarf.'),
+  ('Sneakers',         'მსუბუქი სპორტული ფეხსაცმელი ყოველდღიური ტარებისთვის.',   'Light sneakers for everyday wear.'),
+  ('Knit dress',       'ტრიკოტაჟის კაბა მუხლამდე.',                                'Knee-length knit dress.'),
+  ('Denim jacket',     'კლასიკური ჯინსის ქურთუკი.',                                'Classic denim jacket.'),
+  ('Cashmere sweater', 'კაშემირის სვიტერი მრგვალი საყელოთი.',                     'Crew-neck cashmere sweater.'),
+  ('Leather shoes',    'ნატურალური ტყავის კლასიკური ფეხსაცმელი.',                 'Classic genuine leather shoes.'),
+  ('Cotton shirt',     'ბამბის პერანგი ღილიანი საყელოთი.',                        'Cotton shirt with a button-down collar.'),
+  ('Winter jacket',    'თბილი ზამთრის ქურთუკი კაპიუშონით.',                       'Warm winter jacket with a hood.'),
+  ('Chinos',           'ბამბის ჩინოს შარვალი სწორი ჭრილით.',                      'Straight-cut cotton chinos.'),
+  ('Leather belt',     'ნატურალური ტყავის ქამარი ლითონის ბალთით.',                'Genuine leather belt with a metal buckle.')
+) as v(name_en, description_ka, description_en)
+where p.name_en = v.name_en and p.description_en = '';
+
+-- Clothing: XS–XL, shoes: 36–41 (women) / 40–45 (men). One size per product is sold out, to show that state.
+insert into public.product_sizes (product_id, label, in_stock, sort_order)
+select p.id, u.label, u.label <> sizes.sold_out, u.ord::integer
+from public.products p
+join public.categories c on c.id = p.category_id
+cross join lateral (
+  select
+    case
+      when c.slug = 'clothing' then array['XS', 'S', 'M', 'L', 'XL']
+      when p.gender = 'women' then array['36', '37', '38', '39', '40', '41']
+      else array['40', '41', '42', '43', '44', '45']
+    end as labels,
+    case
+      when c.slug = 'clothing' then 'L'
+      when p.gender = 'women' then '39'
+      else '43'
+    end as sold_out
+) sizes
+cross join lateral unnest(sizes.labels) with ordinality as u(label, ord)
+where c.slug in ('clothing', 'shoes')
+on conflict (product_id, label) do nothing;
