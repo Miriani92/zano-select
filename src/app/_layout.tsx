@@ -46,6 +46,7 @@ function RootNavigator() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Protected guard={user !== null || isGuest} redirectTo="/welcome">
         <Stack.Screen name="(app)" />
+        <Stack.Screen name="product/[id]" />
       </Stack.Protected>
       <Stack.Protected guard={!user}>
         <Stack.Screen name="(auth)" />

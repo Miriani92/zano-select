@@ -1,6 +1,7 @@
 import type {
   BannerDto,
   CategoryDto,
+  ProductDetailDto,
   ProductDto,
 } from '@/features/catalog/data/dto/catalog-dto';
 import type {
@@ -9,6 +10,7 @@ import type {
 } from '@/features/catalog/domain/entities/banner';
 import type { Category } from '@/features/catalog/domain/entities/category';
 import type { Product } from '@/features/catalog/domain/entities/product';
+import type { ProductDetail } from '@/features/catalog/domain/entities/product-detail';
 import { isRail } from '@/features/catalog/domain/entities/rail';
 
 /** Turns a path inside the `catalog` Storage bucket into a public URL. */
@@ -67,5 +69,19 @@ export function toProduct(
       dto.original_price === null ? null : Number(dto.original_price),
     discountPct: dto.discount_pct,
     imageUrls: dto.image_paths.map(imageUrl),
+  };
+}
+
+export function toProductDetail(
+  dto: ProductDetailDto,
+  imageUrl: ImageUrlResolver,
+): ProductDetail {
+  return {
+    ...toProduct(dto, imageUrl),
+    description: { ka: dto.description_ka, en: dto.description_en },
+    sizes: dto.product_sizes.map((size) => ({
+      label: size.label,
+      inStock: size.in_stock,
+    })),
   };
 }

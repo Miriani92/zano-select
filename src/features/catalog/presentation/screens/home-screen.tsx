@@ -24,12 +24,14 @@ export interface HomeScreenProps {
   onSeeAll: (rail: Rail, gender: Gender) => void;
   onCategory: (slug: string) => void;
   onSignIn: () => void;
+  onProduct: (id: string) => void;
 }
 
 export function HomeScreen({
   onSeeAll,
   onCategory,
   onSignIn,
+  onProduct,
 }: HomeScreenProps) {
   const colors = useColors();
   const scheme = useColorScheme();
@@ -106,12 +108,14 @@ export function HomeScreen({
               products={feed.data.rails.discounts}
               onSeeAll={() => onSeeAll('discounts', gender)}
               accessoryFor={(product) => hearts.heartFor(product.id)}
+              onProductPress={(product) => onProduct(product.id)}
             />
             <ProductRail
               title={t('home.rails.newest')}
               products={feed.data.rails.newest}
               onSeeAll={() => onSeeAll('newest', gender)}
               accessoryFor={(product) => hearts.heartFor(product.id)}
+              onProductPress={(product) => onProduct(product.id)}
             />
           </>
         )}

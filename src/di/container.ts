@@ -23,6 +23,7 @@ import {
   makeGetCatalogProducts,
 } from '@/features/catalog/domain/useCases/get-catalog-products';
 import { makeGetHomeFeed } from '@/features/catalog/domain/useCases/get-home-feed';
+import { makeGetProductDetail } from '@/features/catalog/domain/useCases/get-product-detail';
 import { makeGetRailProducts } from '@/features/catalog/domain/useCases/get-rail-products';
 import { createSupabaseWishlistRepository } from '@/features/wishlist/data/repositories/supabase-wishlist-repository';
 import { makeObserveWishlist } from '@/features/wishlist/domain/useCases/observe-wishlist';
@@ -59,6 +60,7 @@ export const catalogUseCases = {
   getCatalogProducts: makeGetCatalogProducts(catalogRepository),
   countCatalogProducts: makeCountCatalogProducts(catalogRepository),
   getCatalogFilterOptions: makeGetCatalogFilterOptions(catalogRepository),
+  getProductDetail: makeGetProductDetail(catalogRepository),
   getGenderPreference: makeGetGenderPreference(genderPreferenceRepository),
   setGenderPreference: makeSetGenderPreference(genderPreferenceRepository),
 };

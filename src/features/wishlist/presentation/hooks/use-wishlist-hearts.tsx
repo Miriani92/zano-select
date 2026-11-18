@@ -12,9 +12,10 @@ export function useWishlistHearts(onSignIn: () => void) {
   const wishlist = useWishlist();
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
-  function heartFor(productId: string) {
+  function heartFor(productId: string, options?: { large?: boolean }) {
     return (
       <WishlistHeart
+        large={options?.large}
         saved={wishlist.isSaved(productId)}
         onPress={() => {
           if (wishlist.canSave) wishlist.toggle(productId);

@@ -36,6 +36,7 @@ export interface CatalogScreenProps {
    */
   categoryRequest?: { slug: string; requestKey: string };
   onSignIn: () => void;
+  onProduct: (id: string) => void;
 }
 
 type Sheet = 'none' | 'filter' | 'sort';
@@ -44,6 +45,7 @@ type Sheet = 'none' | 'filter' | 'sort';
 export function CatalogScreen({
   categoryRequest,
   onSignIn,
+  onProduct,
 }: CatalogScreenProps) {
   const colors = useColors();
   const { t } = useTranslation();
@@ -147,6 +149,7 @@ export function CatalogScreen({
         <ProductGrid
           products={products.data}
           accessoryFor={(product) => hearts.heartFor(product.id)}
+          onProductPress={(product) => onProduct(product.id)}
           isRefreshing={products.isRefreshing}
           onRefresh={products.refresh}
         />

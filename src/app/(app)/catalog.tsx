@@ -17,6 +17,9 @@ export default function CatalogRoute() {
           : undefined
       }
       onSignIn={() => router.push('/welcome')}
+      onProduct={(id) =>
+        router.push({ pathname: '/product/[id]', params: { id } })
+      }
     />
   );
 }

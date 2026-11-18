@@ -15,6 +15,9 @@ export default function HomeRoute() {
         })
       }
       onSignIn={() => router.push('/welcome')}
+      onProduct={(id) =>
+        router.push({ pathname: '/product/[id]', params: { id } })
+      }
     />
   );
 }

@@ -21,6 +21,7 @@ export interface SeeAllScreenProps {
   gender: Gender;
   onBack: () => void;
   onSignIn: () => void;
+  onProduct: (id: string) => void;
 }
 
 // Every product of one Home rail in a 2-column grid.
@@ -29,6 +30,7 @@ export function SeeAllScreen({
   gender,
   onBack,
   onSignIn,
+  onProduct,
 }: SeeAllScreenProps) {
   const colors = useColors();
   const { t } = useTranslation();
@@ -81,6 +83,7 @@ export function SeeAllScreen({
         <ProductGrid
           products={products.data}
           accessoryFor={(product) => hearts.heartFor(product.id)}
+          onProductPress={(product) => onProduct(product.id)}
           isRefreshing={products.isRefreshing}
           onRefresh={products.refresh}
         />

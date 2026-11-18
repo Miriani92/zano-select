@@ -4,14 +4,17 @@ import {
   BANNER_COLUMNS,
   CATEGORY_COLUMNS,
   PRODUCT_COLUMNS,
+  PRODUCT_DETAIL_COLUMNS,
   type BannerDto,
   type CategoryDto,
+  type ProductDetailDto,
   type ProductDto,
 } from '@/features/catalog/data/dto/catalog-dto';
 import {
   toBanner,
   toCategory,
   toProduct,
+  toProductDetail,
   type ImageUrlResolver,
 } from '@/features/catalog/data/dto/catalog-mappers';
 import type { Banner } from '@/features/catalog/domain/entities/banner';
@@ -23,6 +26,8 @@ import { CatalogError } from '@/features/catalog/domain/entities/catalog-error';
 import type { CatalogRepository } from '@/features/catalog/domain/repositories/catalog-repository';
 
 const BUCKET = 'catalog';
+// Postgres error for a value that isn't a valid uuid.
+const INVALID_TEXT_REPRESENTATION = '22P02';
 
 // Column order per sort; ties fall back to newest first.
 const SORT_ORDER: Record<
@@ -138,6 +143,19 @@ export function createSupabaseCatalogRepository(
       return [...counts]
         .map(([brand, count]): BrandCount => ({ brand, count }))
         .sort((a, b) => a.brand.localeCompare(b.brand));
+    },
+
+    async getProduct(id) {
+      const { data, error } = await client
+        .from('products')
+        .select(PRODUCT_DETAIL_COLUMNS)
+        .eq('id', id)
+        .order('sort_order', { referencedTable: 'product_sizes' })
+        .maybeSingle();
+      // A malformed id (e.g. from an old link) can't match any product.
+      if (error?.code === INVALID_TEXT_REPRESENTATION) return null;
+      if (error) throw new CatalogError(error.message);
+      return data ? toProductDetail(data as ProductDetailDto, imageUrl) : null;
     },
   };
 }

@@ -36,6 +36,17 @@ export interface ProductDto {
   image_paths: string[];
 }
 
+export interface ProductSizeDto {
+  label: string;
+  in_stock: boolean;
+}
+
+export interface ProductDetailDto extends ProductDto {
+  description_ka: string;
+  description_en: string;
+  product_sizes: ProductSizeDto[];
+}
+
 export const CATEGORY_COLUMNS = 'id, slug, name_ka, name_en, image_path';
 
 export const BANNER_COLUMNS =
@@ -43,3 +54,5 @@ export const BANNER_COLUMNS =
 
 export const PRODUCT_COLUMNS =
   'id, category_id, gender, brand, name_ka, name_en, price, original_price, discount_pct, image_paths';
+
+export const PRODUCT_DETAIL_COLUMNS = `${PRODUCT_COLUMNS}, description_ka, description_en, product_sizes(label, in_stock)`;

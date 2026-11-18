@@ -7,6 +7,7 @@ import type {
 import type { Category } from '@/features/catalog/domain/entities/category';
 import type { Gender } from '@/features/catalog/domain/entities/gender';
 import type { Product } from '@/features/catalog/domain/entities/product';
+import type { ProductDetail } from '@/features/catalog/domain/entities/product-detail';
 import type { Rail } from '@/features/catalog/domain/entities/rail';
 
 export interface CatalogRepository {
@@ -26,4 +27,6 @@ export interface CatalogRepository {
   countProducts(gender: Gender, filters: CatalogFilters): Promise<number>;
   /** Brands with active products for this gender, A–Z. */
   getBrands(gender: Gender): Promise<BrandCount[]>;
+  /** One active product with its sizes; null when it's gone or inactive. */
+  getProduct(id: string): Promise<ProductDetail | null>;
 }

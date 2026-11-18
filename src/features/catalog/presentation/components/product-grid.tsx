@@ -11,6 +11,7 @@ export interface ProductGridProps {
   products: Product[];
   /** Drawn on each card's photo, e.g. the wishlist heart. */
   accessoryFor?: (product: Product) => ReactNode;
+  onProductPress: (product: Product) => void;
   isRefreshing?: boolean;
   onRefresh?: () => void;
 }
@@ -19,6 +20,7 @@ export interface ProductGridProps {
 export function ProductGrid({
   products,
   accessoryFor,
+  onProductPress,
   isRefreshing = false,
   onRefresh,
 }: ProductGridProps) {
@@ -55,6 +57,7 @@ export function ProductGrid({
               product={item}
               imageHeight={GRID_IMAGE_HEIGHT}
               accessory={accessoryFor?.(item)}
+              onPress={() => onProductPress(item)}
             />
           )}
         </View>

@@ -16,6 +16,7 @@ export interface ProductRailProps {
   onSeeAll: () => void;
   /** Drawn on each card's photo, e.g. the wishlist heart. */
   accessoryFor?: (product: Product) => ReactNode;
+  onProductPress: (product: Product) => void;
 }
 
 // A titled, horizontally scrolling row of products. Hidden when empty.
@@ -24,6 +25,7 @@ export function ProductRail({
   products,
   onSeeAll,
   accessoryFor,
+  onProductPress,
 }: ProductRailProps) {
   const { t } = useTranslation();
 
@@ -74,6 +76,7 @@ export function ProductRail({
             width={RAIL_CARD_WIDTH}
             imageHeight={RAIL_IMAGE_HEIGHT}
             accessory={accessoryFor?.(item)}
+            onPress={() => onProductPress(item)}
           />
         )}
       />

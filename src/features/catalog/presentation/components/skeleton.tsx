@@ -185,3 +185,42 @@ export function GridSkeleton({ imageHeight }: { imageHeight: number }) {
     </SkeletonPulse>
   );
 }
+
+/** Photo, title, price and size pills, shaped like the loaded product screen. */
+export function ProductDetailSkeleton({
+  galleryHeight,
+}: {
+  galleryHeight: number;
+}) {
+  return (
+    <SkeletonPulse>
+      <SkeletonBlock width="100%" height={galleryHeight} radius={0} />
+      <View
+        style={{
+          paddingHorizontal: spacing.lg,
+          paddingTop: spacing.ml,
+          gap: spacing.lg,
+        }}
+      >
+        <View style={{ gap: spacing.ms }}>
+          <SkeletonBlock width={72} height={12} />
+          <SkeletonBlock width={220} height={22} />
+          <SkeletonBlock width={140} height={22} />
+        </View>
+        <View style={{ gap: spacing.ms }}>
+          <SkeletonBlock width={56} height={14} />
+          <View style={{ flexDirection: 'row', gap: spacing.sm }}>
+            {[0, 1, 2, 3].map((pill) => (
+              <SkeletonBlock
+                key={pill}
+                width={56}
+                height={44}
+                radius={radii.md}
+              />
+            ))}
+          </View>
+        </View>
+      </View>
+    </SkeletonPulse>
+  );
+}

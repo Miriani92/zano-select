@@ -22,6 +22,9 @@ export default function SeeAllRoute() {
       gender={gender}
       onBack={() => router.back()}
       onSignIn={() => router.push('/welcome')}
+      onProduct={(id) =>
+        router.push({ pathname: '/product/[id]', params: { id } })
+      }
     />
   );
 }

@@ -6,16 +6,24 @@ import { radius, touchTarget, useColors } from '@/shared/theme';
 
 const CIRCLE = 32;
 const ICON_SIZE = 18;
+const LARGE_ICON_SIZE = 20;
 
 export interface WishlistHeartProps {
   saved: boolean;
   onPress: () => void;
+  /** A full 44pt circle, for floating over the product screen's photo. */
+  large?: boolean;
 }
 
 // 44pt touch target around a 32pt white circle, for the product photo corner.
-export function WishlistHeart({ saved, onPress }: WishlistHeartProps) {
+export function WishlistHeart({
+  saved,
+  onPress,
+  large = false,
+}: WishlistHeartProps) {
   const colors = useColors();
   const { t } = useTranslation();
+  const circle = large ? touchTarget : CIRCLE;
 
   return (
     <Pressable
@@ -33,8 +41,8 @@ export function WishlistHeart({ saved, onPress }: WishlistHeartProps) {
     >
       <View
         style={{
-          width: CIRCLE,
-          height: CIRCLE,
+          width: circle,
+          height: circle,
           borderRadius: radius.full,
           backgroundColor: colors.surface,
           alignItems: 'center',
@@ -44,7 +52,7 @@ export function WishlistHeart({ saved, onPress }: WishlistHeartProps) {
       >
         <Ionicons
           name={saved ? 'heart' : 'heart-outline'}
-          size={ICON_SIZE}
+          size={large ? LARGE_ICON_SIZE : ICON_SIZE}
           color={colors.text}
         />
       </View>
