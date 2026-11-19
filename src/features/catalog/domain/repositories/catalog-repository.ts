@@ -27,6 +27,8 @@ export interface CatalogRepository {
   countProducts(gender: Gender, filters: CatalogFilters): Promise<number>;
   /** Brands with active products for this gender, A–Z. */
   getBrands(gender: Gender): Promise<BrandCount[]>;
+  /** Active products with these ids, in no particular order; missing or inactive ones are left out. */
+  getProductsByIds(ids: string[]): Promise<Product[]>;
   /** One active product with its sizes; null when it's gone or inactive. */
   getProduct(id: string): Promise<ProductDetail | null>;
 }

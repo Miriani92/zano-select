@@ -12,6 +12,7 @@ export const en: Translation = {
   tabs: {
     home: 'Home',
     catalog: 'Catalog',
+    wishlist: 'Wishlist',
     cart: 'Cart',
     profile: 'Profile',
   },
@@ -91,6 +92,16 @@ export const en: Translation = {
       back: 'Go back',
     },
   },
+  wishlist: {
+    title: 'Wishlist',
+    itemCount_one: '{{count}} item',
+    itemCount_other: '{{count}} items',
+    empty: {
+      title: 'Your wishlist is empty',
+      message: 'Tap the heart on items you like to save them here.',
+      startShopping: 'Start shopping',
+    },
+  },
   cart: {
     empty: 'Your cart is empty',
   },
@@ -115,6 +126,7 @@ export const en: Translation = {
       signIn: 'Sign in',
       cart: 'Sign in to use your cart.',
       profile: 'Sign in to see your profile and orders.',
+      wishlist: 'Sign in to save items you like and see them on any device.',
     },
     email: {
       title: "What's your email?",

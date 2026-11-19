@@ -145,6 +145,16 @@ export function createSupabaseCatalogRepository(
         .sort((a, b) => a.brand.localeCompare(b.brand));
     },
 
+    async getProductsByIds(ids) {
+      if (ids.length === 0) return [];
+      const { data, error } = await client
+        .from('products')
+        .select(PRODUCT_COLUMNS)
+        .in('id', ids);
+      if (error) throw new CatalogError(error.message);
+      return (data as ProductDto[]).map((dto) => toProduct(dto, imageUrl));
+    },
+
     async getProduct(id) {
       const { data, error } = await client
         .from('products')

@@ -60,6 +60,13 @@ export default function AppLayout() {
         }}
       />
       <Tabs.Screen
+        name="wishlist"
+        options={{
+          title: t('tabs.wishlist'),
+          tabBarIcon: tabIcon('heart', 'heart-outline'),
+        }}
+      />
+      <Tabs.Screen
         name="cart"
         options={{
           title: t('tabs.cart'),

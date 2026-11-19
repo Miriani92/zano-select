@@ -23,10 +23,11 @@ export function createSupabaseWishlistRepository(
     listeners.forEach((listener) => listener(ids));
   }
 
+  // Newest first: a newly saved id goes to the front.
   function withId(productId: string, saved: boolean): ReadonlySet<string> {
+    if (saved) return new Set([productId, ...ids]);
     const next = new Set(ids);
-    if (saved) next.add(productId);
-    else next.delete(productId);
+    next.delete(productId);
     return next;
   }
 
@@ -56,7 +57,8 @@ export function createSupabaseWishlistRepository(
     async getProductIds() {
       const { data, error } = await client
         .from('wishlist_items')
-        .select('product_id');
+        .select('product_id')
+        .order('created_at', { ascending: false });
       if (error) throw new Error(error.message);
       ids = new Set((data as WishlistItemDto[]).map((row) => row.product_id));
       return ids;
