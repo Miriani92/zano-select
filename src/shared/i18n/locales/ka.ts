@@ -104,6 +104,52 @@ export const ka = {
   cart: {
     empty: 'კალათა ცარიელია',
   },
+  profile: {
+    title: 'პროფილი',
+    edit: 'პროფილის რედაქტირება',
+    noName: 'სახელი არ არის მითითებული',
+    soon: 'მალე',
+    version: 'ვერსია {{version}}',
+    groups: {
+      account: 'ჩემი ანგარიში',
+      settings: 'პარამეტრები',
+      help: 'დახმარება',
+    },
+    rows: {
+      orders: 'ჩემი შეკვეთები',
+      addresses: 'მისამართები',
+      wishlist: 'სურვილები',
+      language: 'ენა',
+      contact: 'დაგვიკავშირდით',
+      legal: 'წესები და კონფიდენციალურობა',
+    },
+    languages: {
+      ka: 'ქართული',
+      en: 'English',
+    },
+    languageSheet: {
+      title: 'ენა',
+      done: 'მზადაა',
+    },
+    editForm: {
+      firstName: 'სახელი',
+      lastName: 'გვარი',
+      phone: 'ტელეფონი',
+      phonePlaceholder: '5XX XX XX XX',
+      email: 'ელ-ფოსტა',
+      emailHint: 'ელ-ფოსტით შედიხარ ანგარიშზე, ამიტომ მისი შეცვლა არ შეიძლება.',
+      save: 'შენახვა',
+      saved: 'შენახულია',
+      invalidPhone: 'შეიყვანე სწორი ტელეფონის ნომერი',
+    },
+    signOutSheet: {
+      title: 'გსურს გასვლა?',
+      message:
+        'შენი სურვილები ანგარიშზე რჩება. ნებისმიერ დროს შეგიძლია ისევ შეხვიდე.',
+      confirm: 'გასვლა',
+      cancel: 'გაუქმება',
+    },
+  },
   input: {
     showPassword: 'პაროლის ჩვენება',
     hidePassword: 'პაროლის დამალვა',

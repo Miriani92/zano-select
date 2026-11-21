@@ -105,6 +105,52 @@ export const en: Translation = {
   cart: {
     empty: 'Your cart is empty',
   },
+  profile: {
+    title: 'Profile',
+    edit: 'Edit profile',
+    noName: 'No name added',
+    soon: 'Soon',
+    version: 'Version {{version}}',
+    groups: {
+      account: 'My account',
+      settings: 'Settings',
+      help: 'Help',
+    },
+    rows: {
+      orders: 'My orders',
+      addresses: 'Addresses',
+      wishlist: 'Wishlist',
+      language: 'Language',
+      contact: 'Contact us',
+      legal: 'Terms & privacy',
+    },
+    languages: {
+      ka: 'ქართული',
+      en: 'English',
+    },
+    languageSheet: {
+      title: 'Language',
+      done: 'Done',
+    },
+    editForm: {
+      firstName: 'First name',
+      lastName: 'Last name',
+      phone: 'Phone',
+      phonePlaceholder: '5XX XX XX XX',
+      email: 'Email',
+      emailHint: "You sign in with your email, so it can't be changed.",
+      save: 'Save',
+      saved: 'Saved',
+      invalidPhone: 'Enter a valid phone number',
+    },
+    signOutSheet: {
+      title: 'Log out?',
+      message:
+        'Your wishlist stays in your account. You can sign in again any time.',
+      confirm: 'Log out',
+      cancel: 'Cancel',
+    },
+  },
   input: {
     showPassword: 'Show password',
     hidePassword: 'Hide password',
