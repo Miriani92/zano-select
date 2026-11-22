@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 
 import { SignInGate } from '@/features/auth/presentation/components/sign-in-gate';
-import { AccountScreen } from '@/features/auth/presentation/screens/account-screen';
+import { ProfileScreen } from '@/features/profile/presentation/screens/profile-screen';
 import { useTranslation } from '@/shared/i18n';
 
 export default function ProfileRoute() {
@@ -11,7 +11,10 @@ export default function ProfileRoute() {
       message={t('auth.signInGate.profile')}
       onSignIn={() => router.push('/welcome')}
     >
-      <AccountScreen />
+      <ProfileScreen
+        onEdit={() => router.push('/edit-profile')}
+        onWishlist={() => router.navigate('/wishlist')}
+      />
     </SignInGate>
   );
 }

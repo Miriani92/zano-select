@@ -48,6 +48,9 @@ function RootNavigator() {
         <Stack.Screen name="(app)" />
         <Stack.Screen name="product/[id]" />
       </Stack.Protected>
+      <Stack.Protected guard={user !== null}>
+        <Stack.Screen name="edit-profile" />
+      </Stack.Protected>
       <Stack.Protected guard={!user}>
         <Stack.Screen name="(auth)" />
       </Stack.Protected>

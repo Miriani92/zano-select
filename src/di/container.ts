@@ -26,6 +26,10 @@ import { makeGetHomeFeed } from '@/features/catalog/domain/useCases/get-home-fee
 import { makeGetProductDetail } from '@/features/catalog/domain/useCases/get-product-detail';
 import { makeGetProductsByIds } from '@/features/catalog/domain/useCases/get-products-by-ids';
 import { makeGetRailProducts } from '@/features/catalog/domain/useCases/get-rail-products';
+import { createSupabaseProfileRepository } from '@/features/profile/data/repositories/supabase-profile-repository';
+import { makeGetProfile } from '@/features/profile/domain/useCases/get-profile';
+import { makeObserveProfile } from '@/features/profile/domain/useCases/observe-profile';
+import { makeUpdateProfile } from '@/features/profile/domain/useCases/update-profile';
 import { createSupabaseWishlistRepository } from '@/features/wishlist/data/repositories/supabase-wishlist-repository';
 import { makeObserveWishlist } from '@/features/wishlist/domain/useCases/observe-wishlist';
 import { makeToggleWishlist } from '@/features/wishlist/domain/useCases/toggle-wishlist';
@@ -72,4 +76,12 @@ const wishlistRepository = createSupabaseWishlistRepository(supabase);
 export const wishlistUseCases = {
   observeWishlist: makeObserveWishlist(wishlistRepository),
   toggleWishlist: makeToggleWishlist(wishlistRepository),
+};
+
+const profileRepository = createSupabaseProfileRepository(supabase);
+
+export const profileUseCases = {
+  getProfile: makeGetProfile(profileRepository),
+  updateProfile: makeUpdateProfile(profileRepository),
+  observeProfile: makeObserveProfile(profileRepository),
 };
