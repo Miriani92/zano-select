@@ -10,10 +10,12 @@ import {
 
 import {
   borderWidth,
+  fonts,
   radius,
   spacing,
   touchTarget,
   useColors,
+  type TypographyVariant,
 } from '@/shared/theme';
 
 import { ThemedText } from './text';
@@ -23,7 +25,11 @@ export type ButtonSize = 'sm' | 'md' | 'lg';
 
 const sizeStyles: Record<
   ButtonSize,
-  { paddingVertical: number; paddingHorizontal: number; minHeight: number }
+  {
+    paddingVertical: number;
+    paddingHorizontal: number;
+    minHeight: number;
+  }
 > = {
   sm: {
     paddingVertical: spacing.xs,
@@ -40,6 +46,16 @@ const sizeStyles: Record<
     paddingHorizontal: spacing.xl,
     minHeight: 52,
   },
+};
+
+// Title text grows with the button; md/sm stay close to body size.
+const titleStyles: Record<
+  ButtonSize,
+  { variant: TypographyVariant; fontFamily?: string }
+> = {
+  sm: { variant: 'link' },
+  md: { variant: 'body', fontFamily: fonts.semiBold },
+  lg: { variant: 'headline' },
 };
 
 export interface ButtonProps {
@@ -113,7 +129,15 @@ export function Button({
           }}
         >
           {icon}
-          <ThemedText variant="headline" style={{ color: textColor }}>
+          <ThemedText
+            variant={titleStyles[size].variant}
+            style={[
+              { color: textColor },
+              titleStyles[size].fontFamily
+                ? { fontFamily: titleStyles[size].fontFamily }
+                : null,
+            ]}
+          >
             {title}
           </ThemedText>
         </View>
