@@ -3,6 +3,7 @@ import { Tabs } from 'expo-router';
 import type { ComponentProps } from 'react';
 import type { ColorValue } from 'react-native';
 
+import { useCart } from '@/features/cart/presentation/hooks/use-cart';
 import { useTranslation } from '@/shared/i18n';
 import { fonts, useColors } from '@/shared/theme';
 
@@ -31,6 +32,8 @@ function tabIcon(active: IconName, inactive: IconName) {
 export default function AppLayout() {
   const colors = useColors();
   const { t } = useTranslation();
+  // Guests and empty carts show no badge.
+  const cartCount = useCart().summary.itemCount;
 
   return (
     <Tabs
@@ -71,6 +74,13 @@ export default function AppLayout() {
         options={{
           title: t('tabs.cart'),
           tabBarIcon: tabIcon('bag-handle', 'bag-handle-outline'),
+          tabBarBadge: cartCount > 0 ? cartCount : undefined,
+          tabBarBadgeStyle: {
+            backgroundColor: colors.sale,
+            color: colors.onSale,
+            fontFamily: fonts.bold,
+            fontSize: 11,
+          },
         }}
       />
       <Tabs.Screen

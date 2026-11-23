@@ -1,5 +1,8 @@
 import type { Gender } from '@/features/catalog/domain/entities/gender';
 
+/** Public Storage bucket holding product, category and banner photos. */
+export const CATALOG_BUCKET = 'catalog';
+
 // Rows as Supabase returns them; only the columns the app selects.
 
 export interface CategoryDto {

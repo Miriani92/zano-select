@@ -1,10 +1,9 @@
 import { router } from 'expo-router';
 
 import { SignInGate } from '@/features/auth/presentation/components/sign-in-gate';
+import { CartScreen } from '@/features/cart/presentation/screens/cart-screen';
 import { useTranslation } from '@/shared/i18n';
-import { ScreenPlaceholder } from '@/shared/ui';
 
-// Placeholder until the cart feature exists.
 export default function CartRoute() {
   const { t } = useTranslation();
   return (
@@ -12,7 +11,13 @@ export default function CartRoute() {
       message={t('auth.signInGate.cart')}
       onSignIn={() => router.push('/welcome')}
     >
-      <ScreenPlaceholder title={t('tabs.cart')} message={t('cart.empty')} />
+      <CartScreen
+        onProduct={(id) =>
+          router.push({ pathname: '/product/[id]', params: { id } })
+        }
+        onStartShopping={() => router.navigate('/catalog')}
+        onViewWishlist={() => router.navigate('/wishlist')}
+      />
     </SignInGate>
   );
 }

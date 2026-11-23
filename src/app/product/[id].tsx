@@ -11,6 +11,7 @@ export default function ProductDetailRoute() {
       productId={id}
       onBack={() => router.back()}
       onSignIn={() => router.push('/welcome')}
+      onViewCart={() => router.navigate('/cart')}
     />
   );
 }

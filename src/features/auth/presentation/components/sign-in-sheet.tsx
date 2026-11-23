@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import type { ComponentProps } from 'react';
 import { View } from 'react-native';
 
 import { useTranslation } from '@/shared/i18n';
@@ -8,18 +9,26 @@ import { AccentRule, BottomSheet, Button, ThemedText } from '@/shared/ui';
 const ICON_CIRCLE = 64;
 const ICON_SIZE = 28;
 
-export interface WishlistSignInSheetProps {
+type IconName = ComponentProps<typeof Ionicons>['name'];
+
+export interface SignInSheetProps {
   visible: boolean;
+  title: string;
+  message: string;
+  icon: IconName;
   onSignIn: () => void;
   onDismiss: () => void;
 }
 
-// Shown when a guest taps a heart: sign in, or "not now".
-export function WishlistSignInSheet({
+// Shown when a guest tries something that needs an account: sign in, or "not now".
+export function SignInSheet({
   visible,
+  title,
+  message,
+  icon,
   onSignIn,
   onDismiss,
-}: WishlistSignInSheetProps) {
+}: SignInSheetProps) {
   const colors = useColors();
   const { t } = useTranslation();
 
@@ -42,11 +51,7 @@ export function WishlistSignInSheet({
           justifyContent: 'center',
         }}
       >
-        <Ionicons
-          name="heart-outline"
-          size={ICON_SIZE}
-          color={colors.primary}
-        />
+        <Ionicons name={icon} size={ICON_SIZE} color={colors.primary} />
       </View>
       <View style={{ alignItems: 'center', gap: spacing.ms }}>
         <ThemedText
@@ -54,7 +59,7 @@ export function WishlistSignInSheet({
           accessibilityRole="header"
           style={{ textAlign: 'center' }}
         >
-          {t('home.signInSheet.title')}
+          {title}
         </ThemedText>
         <AccentRule />
         <ThemedText
@@ -62,7 +67,7 @@ export function WishlistSignInSheet({
           color="textSecondary"
           style={{ textAlign: 'center' }}
         >
-          {t('home.signInSheet.message')}
+          {message}
         </ThemedText>
       </View>
       <View

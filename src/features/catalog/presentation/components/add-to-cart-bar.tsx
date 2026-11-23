@@ -1,20 +1,19 @@
-import { Ionicons } from '@expo/vector-icons';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTranslation } from '@/shared/i18n';
 import { borderWidth, spacing, useColors } from '@/shared/theme';
-import { Button } from '@/shared/ui';
-
-const CHECK_ICON_SIZE = 20;
+import { Button, ThemedText } from '@/shared/ui';
 
 export interface AddToCartBarProps {
-  added: boolean;
+  loading: boolean;
+  /** Shown above the button when the last add failed. */
+  error?: string;
   onAdd: () => void;
 }
 
 // Pinned to the bottom of the product screen, above the home indicator.
-export function AddToCartBar({ added, onAdd }: AddToCartBarProps) {
+export function AddToCartBar({ loading, error, onAdd }: AddToCartBarProps) {
   const colors = useColors();
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
@@ -22,6 +21,7 @@ export function AddToCartBar({ added, onAdd }: AddToCartBarProps) {
   return (
     <View
       style={{
+        gap: spacing.sm,
         paddingTop: spacing.ms,
         paddingHorizontal: spacing.lg,
         paddingBottom: Math.max(insets.bottom, spacing.ms),
@@ -30,18 +30,19 @@ export function AddToCartBar({ added, onAdd }: AddToCartBarProps) {
         borderTopColor: colors.border,
       }}
     >
+      {error && (
+        <ThemedText
+          variant="error"
+          accessibilityRole="alert"
+          style={{ textAlign: 'center' }}
+        >
+          {error}
+        </ThemedText>
+      )}
       <Button
         size="lg"
-        title={added ? t('product.addedToCart') : t('product.addToCart')}
-        icon={
-          added && (
-            <Ionicons
-              name="checkmark"
-              size={CHECK_ICON_SIZE}
-              color={colors.onPrimary}
-            />
-          )
-        }
+        title={t('product.addToCart')}
+        loading={loading}
         onPress={onAdd}
       />
     </View>

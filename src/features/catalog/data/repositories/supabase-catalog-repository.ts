@@ -3,6 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import {
   BANNER_COLUMNS,
   CATEGORY_COLUMNS,
+  CATALOG_BUCKET,
   PRODUCT_COLUMNS,
   PRODUCT_DETAIL_COLUMNS,
   type BannerDto,
@@ -25,7 +26,6 @@ import type {
 import { CatalogError } from '@/features/catalog/domain/entities/catalog-error';
 import type { CatalogRepository } from '@/features/catalog/domain/repositories/catalog-repository';
 
-const BUCKET = 'catalog';
 // Postgres error for a value that isn't a valid uuid.
 const INVALID_TEXT_REPRESENTATION = '22P02';
 
@@ -54,7 +54,7 @@ export function createSupabaseCatalogRepository(
   client: SupabaseClient,
 ): CatalogRepository {
   const imageUrl: ImageUrlResolver = (path) =>
-    client.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+    client.storage.from(CATALOG_BUCKET).getPublicUrl(path).data.publicUrl;
 
   return {
     async getCategories() {

@@ -11,6 +11,13 @@ import { makeSendEmailCode } from '@/features/auth/domain/useCases/send-email-co
 import { makeSignInWithGoogle } from '@/features/auth/domain/useCases/sign-in-with-google';
 import { makeSignOut } from '@/features/auth/domain/useCases/sign-out';
 import { makeVerifyEmailCode } from '@/features/auth/domain/useCases/verify-email-code';
+import { createSupabaseCartRepository } from '@/features/cart/data/repositories/supabase-cart-repository';
+import {
+  makeAddToCart,
+  makeChangeQuantity,
+  makeRemoveFromCart,
+} from '@/features/cart/domain/useCases/change-cart';
+import { makeObserveCart } from '@/features/cart/domain/useCases/observe-cart';
 import { createAsyncStorageGenderPreferenceRepository } from '@/features/catalog/data/repositories/async-storage-gender-preference-repository';
 import { createSupabaseCatalogRepository } from '@/features/catalog/data/repositories/supabase-catalog-repository';
 import {
@@ -84,4 +91,13 @@ export const profileUseCases = {
   getProfile: makeGetProfile(profileRepository),
   updateProfile: makeUpdateProfile(profileRepository),
   observeProfile: makeObserveProfile(profileRepository),
+};
+
+const cartRepository = createSupabaseCartRepository(supabase);
+
+export const cartUseCases = {
+  observeCart: makeObserveCart(cartRepository),
+  addToCart: makeAddToCart(cartRepository),
+  changeQuantity: makeChangeQuantity(cartRepository),
+  removeFromCart: makeRemoveFromCart(cartRepository),
 };
