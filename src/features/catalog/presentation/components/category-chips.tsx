@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import type { ComponentProps } from 'react';
 import { Image } from 'expo-image';
 import { Pressable, ScrollView, View } from 'react-native';
 
@@ -15,6 +16,17 @@ export interface CategoryChipsProps {
 export const CHIP_WIDTH = 72;
 export const CHIP_CIRCLE = 64;
 const PLACEHOLDER_ICON_SIZE = 22;
+
+type IconName = ComponentProps<typeof Ionicons>['name'];
+
+/** Shown when a category has no photo; unknown slugs fall back to a tag. */
+const CATEGORY_ICONS: Record<string, IconName> = {
+  clothing: 'shirt-outline',
+  shoes: 'footsteps-outline',
+  bags: 'bag-handle-outline',
+  accessories: 'watch-outline',
+};
+const FALLBACK_ICON: IconName = 'pricetag-outline';
 
 // Horizontal row of round category photos with labels.
 export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
@@ -61,7 +73,7 @@ export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
               />
             ) : (
               <Ionicons
-                name="pricetag-outline"
+                name={CATEGORY_ICONS[category.slug] ?? FALLBACK_ICON}
                 size={PLACEHOLDER_ICON_SIZE}
                 color={colors.textSecondary}
               />
