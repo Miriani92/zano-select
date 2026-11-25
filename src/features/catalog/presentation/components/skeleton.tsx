@@ -5,10 +5,7 @@ import {
   RAIL_CARD_WIDTH,
   RAIL_IMAGE_HEIGHT,
 } from '@/features/catalog/presentation/components/product-rail';
-import {
-  CHIP_CIRCLE,
-  CHIP_WIDTH,
-} from '@/features/catalog/presentation/components/category-chips';
+import { CHIP_CIRCLE } from '@/features/catalog/presentation/components/category-chips';
 import {
   HERO_HEIGHT,
   HERO_RADIUS,
@@ -113,7 +110,7 @@ export function HomeSkeleton() {
         <View
           style={{
             flexDirection: 'row',
-            gap: spacing.md,
+            gap: spacing.sm,
             paddingHorizontal: spacing.lg,
           }}
         >
@@ -121,7 +118,7 @@ export function HomeSkeleton() {
             <View
               key={key}
               style={{
-                width: CHIP_WIDTH,
+                flex: 1,
                 alignItems: 'center',
                 gap: spacing.sm,
               }}

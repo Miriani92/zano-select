@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import type { ComponentProps } from 'react';
 import { Image } from 'expo-image';
-import { Pressable, ScrollView, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 
 import type { Category } from '@/features/catalog/domain/entities/category';
 import { useLocalized } from '@/shared/i18n/use-localized';
@@ -13,7 +13,6 @@ export interface CategoryChipsProps {
   onPress: (category: Category) => void;
 }
 
-export const CHIP_WIDTH = 72;
 export const CHIP_CIRCLE = 64;
 const PLACEHOLDER_ICON_SIZE = 22;
 
@@ -28,16 +27,18 @@ const CATEGORY_ICONS: Record<string, IconName> = {
 };
 const FALLBACK_ICON: IconName = 'pricetag-outline';
 
-// Horizontal row of round category photos with labels.
+// Round category photos with one-line labels, sharing the row's width equally.
 export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
   const colors = useColors();
   const localized = useLocalized();
 
   return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ paddingHorizontal: spacing.lg, gap: spacing.md }}
+    <View
+      style={{
+        flexDirection: 'row',
+        paddingHorizontal: spacing.lg,
+        gap: spacing.sm,
+      }}
     >
       {categories.map((category) => (
         <Pressable
@@ -45,7 +46,7 @@ export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
           accessibilityRole="button"
           onPress={() => onPress(category)}
           style={({ pressed }) => ({
-            width: CHIP_WIDTH,
+            flex: 1,
             alignItems: 'center',
             gap: spacing.sm,
             opacity: pressed ? 0.6 : 1,
@@ -80,7 +81,10 @@ export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
             )}
           </View>
           <ThemedText
-            numberOfLines={2}
+            numberOfLines={1}
+            // Safety net for narrow phones; normal widths fit at full size.
+            adjustsFontSizeToFit
+            minimumFontScale={0.85}
             variant="caption"
             color="text"
             style={{ fontFamily: fonts.medium, textAlign: 'center' }}
@@ -89,6 +93,6 @@ export function CategoryChips({ categories, onPress }: CategoryChipsProps) {
           </ThemedText>
         </Pressable>
       ))}
-    </ScrollView>
+    </View>
   );
 }
